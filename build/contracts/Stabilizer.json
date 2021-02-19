@@ -1,0 +1,3640 @@
+{
+  "contractName": "Stabilizer",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "StabilityReward",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowanceCoupons",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "approveFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOfBonded",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceOfCouponUnderlying",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceOfCoupons",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOfStaged",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "bootstrappingAt",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "couponsExpiration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dollar",
+      "outputs": [
+        {
+          "internalType": "contract IDollar",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "epoch",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "epochTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "eraStart",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "eraStatus",
+      "outputs": [
+        {
+          "internalType": "enum Era.Status",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "expiringCoupons",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "name": "expiringCouponsAtIndex",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "fluidUntil",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "implementation",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "impl",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "isInitialized",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "isNominated",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "lockedUntil",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract IOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "outstandingCoupons",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "periodFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "pool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "recordedVote",
+      "outputs": [
+        {
+          "internalType": "enum Candidate.Vote",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "rejectFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "startFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "statusOf",
+      "outputs": [
+        {
+          "internalType": "enum Account.Status",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalBonded",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "totalBondedAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalCouponUnderlying",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalCoupons",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalDebt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalNet",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalRedeemable",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalStaged",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "candidate",
+          "type": "address"
+        }
+      ],
+      "name": "votesFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"StabilityReward\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowanceCoupons\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"approveFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOfBonded\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"balanceOfCouponUnderlying\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"balanceOfCoupons\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOfStaged\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"bootstrappingAt\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"couponsExpiration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"dollar\",\"outputs\":[{\"internalType\":\"contract IDollar\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"epoch\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"epochTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"eraStart\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"eraStatus\",\"outputs\":[{\"internalType\":\"enum Era.Status\",\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"expiringCoupons\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"i\",\"type\":\"uint256\"}],\"name\":\"expiringCouponsAtIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"fluidUntil\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"impl\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"isInitialized\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"isNominated\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"lockedUntil\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"oracle\",\"outputs\":[{\"internalType\":\"contract IOracle\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"outstandingCoupons\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"periodFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"pool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"recordedVote\",\"outputs\":[{\"internalType\":\"enum Candidate.Vote\",\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"rejectFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"startFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"statusOf\",\"outputs\":[{\"internalType\":\"enum Account.Status\",\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalBonded\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"epoch\",\"type\":\"uint256\"}],\"name\":\"totalBondedAt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalCouponUnderlying\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalCoupons\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalNet\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalRedeemable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalStaged\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"candidate\",\"type\":\"address\"}],\"name\":\"votesFor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"balanceOfStaged(address)\":{\"notice\":\"Account\"},\"dollar()\":{\"notice\":\"Global\"},\"epoch()\":{\"notice\":\"Epoch\"},\"name()\":{\"notice\":\"ERC20 Interface\"},\"recordedVote(address,address)\":{\"notice\":\"Governance\"},\"transfer(address,uint256)\":{\"notice\":\"ERC20 Interface\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Stabilizer.sol\":\"Stabilizer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/Constants.sol\":{\"keccak256\":\"0xa5ccdd2139d79156b6f94e6ea271d62ce3f279b0ff3c1dfb97de8c15a3abeff6\",\"urls\":[\"bzz-raw://1363529ca4286e2083035e22aa28132bbc7e1fe44cf9899faf2bef76d60c2997\",\"dweb:/ipfs/QmXjz8ZmTZNM98yUTEgYTqhgqeRYWJYh791qGTF3SPr6fF\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Comptroller.sol\":{\"keccak256\":\"0x3736af38a1e69d91a2f80feb3f67dc44f94318d8bc536be705dce438e1ddbc7a\",\"urls\":[\"bzz-raw://f9c94e180e18934e0f41a51da3102346007cd4f0bb0068fd5d5fb76bf9966fa0\",\"dweb:/ipfs/QmPgTK8Msi8QWk7CmAtfrvrYAKuXVeVzWBKRM2rpqciQc5\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Getters.sol\":{\"keccak256\":\"0x87382d1bd765354407f48840073d00a759c154bcd2299563e84b5e80f282e2fc\",\"urls\":[\"bzz-raw://391974776d388d3181d339d7436df6bd62ce74f5df90a84712b27b9c78eebbfe\",\"dweb:/ipfs/QmR3Ludbz8ndzEvzZuiyVCDsH178Nsb8Fyzmbs8Bm8gf5u\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Setters.sol\":{\"keccak256\":\"0xe2050a7ddf4f9811e73efdd2d239ea4a817606fe2cb88eed419545603b01b82a\",\"urls\":[\"bzz-raw://6192d80f3cd9e07b927d7af2efe7b995bf42b921ea7040cca20628e9d21ceef8\",\"dweb:/ipfs/QmW6NmGmUrHCTuyxhjVjxLE6TMpS6GWYo8cYCqanvYtyD1\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Stabilizer.sol\":{\"keccak256\":\"0xb861b669f3ebba3c6f1f1f729eaca3b268ae24edf9ea5701aa73337060ffe587\",\"urls\":[\"bzz-raw://14e335bbbbb59cd7dad340d54112b390cd45da30b6a4b4c1bb3edd6186211c67\",\"dweb:/ipfs/Qma9RZj7AHiqGsqwHk6wgvgfVjF3ptif31cut9auhAaPmV\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/State.sol\":{\"keccak256\":\"0xd7da5c534730b410abec9cf357609df0809e55ac483529e180ec900f866b4a45\",\"urls\":[\"bzz-raw://dc1eb4e341cae16b43a9193e5a4f988992a3abd438df043c03baf7f4c491abff\",\"dweb:/ipfs/QmWoAv7vi6xDEk33ZqapAAqVL292orhhsSHDMZPxC15bkP\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/external/Decimal.sol\":{\"keccak256\":\"0x2940908a476566bd3650a1a90713be76ab9d9880d6454b9bb2ad81a24fede7e7\",\"urls\":[\"bzz-raw://092234c76e2321182f5dd316cf875ed0a7979441bdf85b121e2579fb91067de3\",\"dweb:/ipfs/QmPJMkXZXZFrKSwXp2qJQimLTGN4R8sJWAXWBahxQvDJTY\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/external/Require.sol\":{\"keccak256\":\"0x3b8edcc166414f1c408972bf8130893a601a29eb87454621b187e754a8372922\",\"urls\":[\"bzz-raw://3a900707d5229254a1f021438d32adf87cf37a251cc0eea926e24cccad3ecf14\",\"dweb:/ipfs/QmWda2qiJEUnjftpqhxR1cZPJXqjkHJwFhLpXurod3uwnW\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/oracle/IOracle.sol\":{\"keccak256\":\"0x867fcac1408b12e2f50691061c2ac4d0d86cb65ecbbc84db6b8bb676fe6febea\",\"urls\":[\"bzz-raw://6504fa65d6a0f0ec878ffebb3a7e0bd7e29e7e3a9687f55b9a22e396096a96fb\",\"dweb:/ipfs/QmTDYRpRB9XZEHVxYjdnocxdxY1pheyEzcEDMiFi5XTMfL\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/token/IDollar.sol\":{\"keccak256\":\"0xa71961884d75d7f2062f5cc136d6e5aa71506a62b86a481abf1ef3489e13ac37\",\"urls\":[\"bzz-raw://90d54daead1f11a0cc45115748c18784288658c166d5e30e53bf654e2e0833b2\",\"dweb:/ipfs/QmTgwRAknt7HAmo8ANXqf9jehUyTMpgodVbADZP8VmNDTG\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]},\"@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol\":{\"keccak256\":\"0x7c9bc70e5996c763e02ff38905282bc24fb242b0ef2519a003b36824fc524a4b\",\"urls\":[\"bzz-raw://85d5ad2dd23ee127f40907a12865a1e8cb5828814f6f2480285e1827dd72dedf\",\"dweb:/ipfs/QmayKQWJgWmr46DqWseADyUanmqxh662hPNdAkdHRjiQQH\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50611ec8806100206000396000f3fe608060405234801561001057600080fd5b506004361061028a5760003560e01c806375d5024b1161015c578063a6c409f1116100ce578063d60b347f11610087578063d60b347f14610e53578063dd62ed3e14610eaf578063edb6b80a14610f27578063f1b7cf4914610f53578063fc7b9c1814610fab578063ffbe3b7314610fc95761028a565b8063a6c409f114610cef578063a9059cbb14610d0d578063b739a7b814610d73578063bc7513e214610d91578063c9aff70c14610df3578063cf02377914610e355761028a565b806395d89b411161012057806395d89b4114610ac057806397a5d5b514610b435780639a649edc14610ba95780639bc289f114610bc75780639f6e1b2614610c1f578063a50cd8e714610c975761028a565b806375d5024b146109625780637dc0d1d0146109a8578063825ad607146109f257806386cf9f1414610a4a578063900cf0cf14610aa25761028a565b80633a3e6c811161020057806351adeb57116101b957806351adeb571461078457806351bf21d8146107ce5780635c60da1b1461082657806364668022146108705780636a39e328146108c857806370a082311461090a5761028a565b80633a3e6c81146105fc5780633fbba9a6146106585780634303d4f7146106de57806344d96e95146106fc5780634c7360991461071a5780635053e461146107665761028a565b806316f0115b1161025257806316f0115b1461047457806318160ddd146104be5780631edbcf6c146104dc57806323b872dd146104fa578063313ce56714610580578063353a420c146105a45761028a565b806306fdde031461028f578063095ea7b3146103125780630d78ceb41461037857806310e95b6c146103da57806315e14bf61461041c575b600080fd5b61029761100b565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156102d75780820151818401526020810190506102bc565b50505050905090810190601f1680156103045780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61035e6004803603604081101561032857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050611048565b604051808215151515815260200191505060405180910390f35b6103c46004803603604081101561038e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050611053565b6040518082815260200191505060405180910390f35b610406600480360360208110156103f057600080fd5b81019080803590602001909291905050506110b1565b6040518082815260200191505060405180910390f35b61045e6004803603602081101561043257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506110d6565b6040518082815260200191505060405180910390f35b61047c611124565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104c6611153565b6040518082815260200191505060405180910390f35b6104e4611162565b6040518082815260200191505060405180910390f35b6105666004803603606081101561051057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050611171565b604051808215151515815260200191505060405180910390f35b61058861117d565b604051808260ff1660ff16815260200191505060405180910390f35b6105e6600480360360208110156105ba57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611186565b6040518082815260200191505060405180910390f35b61063e6004803603602081101561061257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506111d4565b604051808215151515815260200191505060405180910390f35b6106ba6004803603604081101561066e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611225565b604051808260028111156106ca57fe5b60ff16815260200191505060405180910390f35b6106e66112be565b6040518082815260200191505060405180910390f35b6107046112cb565b6040518082815260200191505060405180910390f35b6107506004803603604081101561073057600080fd5b8101908080359060200190929190803590602001909291905050506112da565b6040518082815260200191505060405180910390f35b61076e611315565b6040518082815260200191505060405180910390f35b61078c61136c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610810600480360360208110156107e457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061139b565b6040518082815260200191505060405180910390f35b61082e6113e9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6108b26004803603602081101561088657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061141a565b6040518082815260200191505060405180910390f35b6108f4600480360360208110156108de57600080fd5b8101908080359060200190929190505050611468565b6040518082815260200191505060405180910390f35b61094c6004803603602081101561092057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611490565b6040518082815260200191505060405180910390f35b61098e6004803603602081101561097857600080fd5b81019080803590602001909291905050506114de565b604051808215151515815260200191505060405180910390f35b6109b06114f2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610a3460048036036020811015610a0857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611521565b6040518082815260200191505060405180910390f35b610a8c60048036036020811015610a6057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061157e565b6040518082815260200191505060405180910390f35b610aaa6115cc565b6040518082815260200191505060405180910390f35b610ac86115db565b6040518080602001828103825283818151815260200191508051906020019080838360005b83811015610b08578082015181840152602081019050610aed565b50505050905090810190601f168015610b355780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b610b8560048036036020811015610b5957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611618565b60405180826002811115610b9557fe5b60ff16815260200191505060405180910390f35b610bb16116dd565b6040518082815260200191505060405180910390f35b610c0960048036036020811015610bdd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506116ec565b6040518082815260200191505060405180910390f35b610c8160048036036040811015610c3557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061173a565b6040518082815260200191505060405180910390f35b610cd960048036036020811015610cad57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506117c6565b6040518082815260200191505060405180910390f35b610cf76117f2565b6040518082815260200191505060405180910390f35b610d5960048036036040811015610d2357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061189a565b604051808215151515815260200191505060405180910390f35b610d7b6118a5565b6040518082815260200191505060405180910390f35b610ddd60048036036040811015610da757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506118b5565b6040518082815260200191505060405180910390f35b610e1f60048036036020811015610e0957600080fd5b8101908080359060200190929190505050611930565b6040518082815260200191505060405180910390f35b610e3d611955565b6040518082815260200191505060405180910390f35b610e9560048036036020811015610e6957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611964565b604051808215151515815260200191505060405180910390f35b610f1160048036036040811015610ec557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506119bf565b6040518082815260200191505060405180910390f35b610f2f6119ca565b60405180826001811115610f3f57fe5b60ff16815260200191505060405180910390f35b610f9560048036036020811015610f6957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506119e7565b6040518082815260200191505060405180910390f35b610fb3611a35565b6040518082815260200191505060405180910390f35b610ff560048036036020811015610fdf57600080fd5b8101908080359060200190929190505050611a44565b6040518082815260200191505060405180910390f35b60606040518060400160405280601681526020017f456d7074792053657420446f6c6c6172205374616b6500000000000000000000815250905090565b600080905092915050565b6000600f60000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600083815260200190815260200160002054905092915050565b600080600d016000838152602001908152602001600020600101600101549050919050565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b60008060090160020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060030160000154905090565b60008060030160030154905090565b60008090509392505050565b60006012905090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301549050919050565b6000806000600e0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154119050919050565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000600f60010154905090565b60008060030160010154905090565b600080600d016000848152602001908152602001600020600101600201828154811061130257fe5b9060005260206000200154905092915050565b600061131f611e51565b611327611a66565b9050611331611e51565b611339611a95565b90508160200151611348611ac5565b1061135b5761135682611acd565b611365565b61136481611acd565b5b9250505090565b60008060090160000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600401549050919050565b6000807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc60001b9050805491505090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201549050919050565b600080600d016000838152602001908152602001600020600101600201805490509050919050565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b60006114e8611b20565b8211159050919050565b60008060090160010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008061152c611153565b90506000811415611541576000915050611579565b6115758161156761155186611490565b6115596112cb565b611b2990919063ffffffff16565b611baf90919063ffffffff16565b9150505b919050565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001549050919050565b60008060000160020154905090565b60606040518060400160405280600481526020017f4553445300000000000000000000000000000000000000000000000000000000815250905090565b60006116226115cc565b6000600c0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050154111561167757600290506116d8565b6000600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600401546116c56115cc565b10156116d25760016116d5565b60005b90505b919050565b60008060030160050154905090565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600501549050919050565b600080600c0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060030160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905092915050565b60006117eb6117d483611186565b6117dd8461141a565b611bf990919063ffffffff16565b9050919050565b60006118956117ff611a35565b61180761136c565b73ffffffffffffffffffffffffffffffffffffffff166318160ddd6040518163ffffffff1660e01b815260040160206040518083038186803b15801561184c57600080fd5b505afa158015611860573d6000803e3d6000fd5b505050506040513d602081101561187657600080fd5b8101908080519060200190929190505050611c8190919063ffffffff16565b905090565b600080905092915050565b6000601160000160010154905090565b6000806118c183611930565b14156118d0576000905061192a565b6000600c0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020160008381526020019081526020016000205490505b92915050565b600080600d016000838152602001908152602001600020600101600001549050919050565b60008060030160020154905090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160009054906101000a900460ff169050919050565b600080905092915050565b6000601160000160000160009054906101000a900460ff16905090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001549050919050565b60008060030160040154905090565b600080600d016000838152602001908152602001600020600001549050919050565b611a6e611e51565b6040518060600160405280606a8152602001635f7fa8008152602001617080815250905090565b611a9d611e51565b6040518060600160405280605b8152602001635f6be180815260200162015180815250905090565b600042905090565b6000611b198260000151611b0b8460400151611afd8660200151611aef611ac5565b611c8190919063ffffffff16565b611baf90919063ffffffff16565b611bf990919063ffffffff16565b9050919050565b6000605a905090565b600080831415611b3c5760009050611ba9565b6000828402905082848281611b4d57fe5b0414611ba4576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180611e736021913960400191505060405180910390fd5b809150505b92915050565b6000611bf183836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f000000000000815250611ccb565b905092915050565b600080828401905083811015611c77576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b6000611cc383836040518060400160405280601e81526020017f536166654d6174683a207375627472616374696f6e206f766572666c6f770000815250611d91565b905092915050565b60008083118290611d77576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b83811015611d3c578082015181840152602081019050611d21565b50505050905090810190601f168015611d695780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b506000838581611d8357fe5b049050809150509392505050565b6000838311158290611e3e576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b83811015611e03578082015181840152602081019050611de8565b50505050905090810190601f168015611e305780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385039050809150509392505050565b6040518060600160405280600081526020016000815260200160008152509056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f77a265627a7a72315820e977d99e09a218ba0eda34a0b32d941b18a74c33bcc1f30ebdb5426e6992ec5964736f6c63430005110032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061028a5760003560e01c806375d5024b1161015c578063a6c409f1116100ce578063d60b347f11610087578063d60b347f14610e53578063dd62ed3e14610eaf578063edb6b80a14610f27578063f1b7cf4914610f53578063fc7b9c1814610fab578063ffbe3b7314610fc95761028a565b8063a6c409f114610cef578063a9059cbb14610d0d578063b739a7b814610d73578063bc7513e214610d91578063c9aff70c14610df3578063cf02377914610e355761028a565b806395d89b411161012057806395d89b4114610ac057806397a5d5b514610b435780639a649edc14610ba95780639bc289f114610bc75780639f6e1b2614610c1f578063a50cd8e714610c975761028a565b806375d5024b146109625780637dc0d1d0146109a8578063825ad607146109f257806386cf9f1414610a4a578063900cf0cf14610aa25761028a565b80633a3e6c811161020057806351adeb57116101b957806351adeb571461078457806351bf21d8146107ce5780635c60da1b1461082657806364668022146108705780636a39e328146108c857806370a082311461090a5761028a565b80633a3e6c81146105fc5780633fbba9a6146106585780634303d4f7146106de57806344d96e95146106fc5780634c7360991461071a5780635053e461146107665761028a565b806316f0115b1161025257806316f0115b1461047457806318160ddd146104be5780631edbcf6c146104dc57806323b872dd146104fa578063313ce56714610580578063353a420c146105a45761028a565b806306fdde031461028f578063095ea7b3146103125780630d78ceb41461037857806310e95b6c146103da57806315e14bf61461041c575b600080fd5b61029761100b565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156102d75780820151818401526020810190506102bc565b50505050905090810190601f1680156103045780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61035e6004803603604081101561032857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050611048565b604051808215151515815260200191505060405180910390f35b6103c46004803603604081101561038e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050611053565b6040518082815260200191505060405180910390f35b610406600480360360208110156103f057600080fd5b81019080803590602001909291905050506110b1565b6040518082815260200191505060405180910390f35b61045e6004803603602081101561043257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506110d6565b6040518082815260200191505060405180910390f35b61047c611124565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104c6611153565b6040518082815260200191505060405180910390f35b6104e4611162565b6040518082815260200191505060405180910390f35b6105666004803603606081101561051057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050611171565b604051808215151515815260200191505060405180910390f35b61058861117d565b604051808260ff1660ff16815260200191505060405180910390f35b6105e6600480360360208110156105ba57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611186565b6040518082815260200191505060405180910390f35b61063e6004803603602081101561061257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506111d4565b604051808215151515815260200191505060405180910390f35b6106ba6004803603604081101561066e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611225565b604051808260028111156106ca57fe5b60ff16815260200191505060405180910390f35b6106e66112be565b6040518082815260200191505060405180910390f35b6107046112cb565b6040518082815260200191505060405180910390f35b6107506004803603604081101561073057600080fd5b8101908080359060200190929190803590602001909291905050506112da565b6040518082815260200191505060405180910390f35b61076e611315565b6040518082815260200191505060405180910390f35b61078c61136c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610810600480360360208110156107e457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061139b565b6040518082815260200191505060405180910390f35b61082e6113e9565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6108b26004803603602081101561088657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061141a565b6040518082815260200191505060405180910390f35b6108f4600480360360208110156108de57600080fd5b8101908080359060200190929190505050611468565b6040518082815260200191505060405180910390f35b61094c6004803603602081101561092057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611490565b6040518082815260200191505060405180910390f35b61098e6004803603602081101561097857600080fd5b81019080803590602001909291905050506114de565b604051808215151515815260200191505060405180910390f35b6109b06114f2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610a3460048036036020811015610a0857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611521565b6040518082815260200191505060405180910390f35b610a8c60048036036020811015610a6057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061157e565b6040518082815260200191505060405180910390f35b610aaa6115cc565b6040518082815260200191505060405180910390f35b610ac86115db565b6040518080602001828103825283818151815260200191508051906020019080838360005b83811015610b08578082015181840152602081019050610aed565b50505050905090810190601f168015610b355780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b610b8560048036036020811015610b5957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611618565b60405180826002811115610b9557fe5b60ff16815260200191505060405180910390f35b610bb16116dd565b6040518082815260200191505060405180910390f35b610c0960048036036020811015610bdd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506116ec565b6040518082815260200191505060405180910390f35b610c8160048036036040811015610c3557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061173a565b6040518082815260200191505060405180910390f35b610cd960048036036020811015610cad57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506117c6565b6040518082815260200191505060405180910390f35b610cf76117f2565b6040518082815260200191505060405180910390f35b610d5960048036036040811015610d2357600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061189a565b604051808215151515815260200191505060405180910390f35b610d7b6118a5565b6040518082815260200191505060405180910390f35b610ddd60048036036040811015610da757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506118b5565b6040518082815260200191505060405180910390f35b610e1f60048036036020811015610e0957600080fd5b8101908080359060200190929190505050611930565b6040518082815260200191505060405180910390f35b610e3d611955565b6040518082815260200191505060405180910390f35b610e9560048036036020811015610e6957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050611964565b604051808215151515815260200191505060405180910390f35b610f1160048036036040811015610ec557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506119bf565b6040518082815260200191505060405180910390f35b610f2f6119ca565b60405180826001811115610f3f57fe5b60ff16815260200191505060405180910390f35b610f9560048036036020811015610f6957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506119e7565b6040518082815260200191505060405180910390f35b610fb3611a35565b6040518082815260200191505060405180910390f35b610ff560048036036020811015610fdf57600080fd5b8101908080359060200190929190505050611a44565b6040518082815260200191505060405180910390f35b60606040518060400160405280601681526020017f456d7074792053657420446f6c6c6172205374616b6500000000000000000000815250905090565b600080905092915050565b6000600f60000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600083815260200190815260200160002054905092915050565b600080600d016000838152602001908152602001600020600101600101549050919050565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b60008060090160020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060030160000154905090565b60008060030160030154905090565b60008090509392505050565b60006012905090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301549050919050565b6000806000600e0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154119050919050565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000600f60010154905090565b60008060030160010154905090565b600080600d016000848152602001908152602001600020600101600201828154811061130257fe5b9060005260206000200154905092915050565b600061131f611e51565b611327611a66565b9050611331611e51565b611339611a95565b90508160200151611348611ac5565b1061135b5761135682611acd565b611365565b61136481611acd565b5b9250505090565b60008060090160000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600401549050919050565b6000807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc60001b9050805491505090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201549050919050565b600080600d016000838152602001908152602001600020600101600201805490509050919050565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b60006114e8611b20565b8211159050919050565b60008060090160010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008061152c611153565b90506000811415611541576000915050611579565b6115758161156761155186611490565b6115596112cb565b611b2990919063ffffffff16565b611baf90919063ffffffff16565b9150505b919050565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001549050919050565b60008060000160020154905090565b60606040518060400160405280600481526020017f4553445300000000000000000000000000000000000000000000000000000000815250905090565b60006116226115cc565b6000600c0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050154111561167757600290506116d8565b6000600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600401546116c56115cc565b10156116d25760016116d5565b60005b90505b919050565b60008060030160050154905090565b600080600c0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600501549050919050565b600080600c0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060030160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905092915050565b60006117eb6117d483611186565b6117dd8461141a565b611bf990919063ffffffff16565b9050919050565b60006118956117ff611a35565b61180761136c565b73ffffffffffffffffffffffffffffffffffffffff166318160ddd6040518163ffffffff1660e01b815260040160206040518083038186803b15801561184c57600080fd5b505afa158015611860573d6000803e3d6000fd5b505050506040513d602081101561187657600080fd5b8101908080519060200190929190505050611c8190919063ffffffff16565b905090565b600080905092915050565b6000601160000160010154905090565b6000806118c183611930565b14156118d0576000905061192a565b6000600c0160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020160008381526020019081526020016000205490505b92915050565b600080600d016000838152602001908152602001600020600101600001549050919050565b60008060030160020154905090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160009054906101000a900460ff169050919050565b600080905092915050565b6000601160000160000160009054906101000a900460ff16905090565b600080600e0160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001549050919050565b60008060030160040154905090565b600080600d016000838152602001908152602001600020600001549050919050565b611a6e611e51565b6040518060600160405280606a8152602001635f7fa8008152602001617080815250905090565b611a9d611e51565b6040518060600160405280605b8152602001635f6be180815260200162015180815250905090565b600042905090565b6000611b198260000151611b0b8460400151611afd8660200151611aef611ac5565b611c8190919063ffffffff16565b611baf90919063ffffffff16565b611bf990919063ffffffff16565b9050919050565b6000605a905090565b600080831415611b3c5760009050611ba9565b6000828402905082848281611b4d57fe5b0414611ba4576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180611e736021913960400191505060405180910390fd5b809150505b92915050565b6000611bf183836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f000000000000815250611ccb565b905092915050565b600080828401905083811015611c77576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b6000611cc383836040518060400160405280601e81526020017f536166654d6174683a207375627472616374696f6e206f766572666c6f770000815250611d91565b905092915050565b60008083118290611d77576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b83811015611d3c578082015181840152602081019050611d21565b50505050905090810190601f168015611d695780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b506000838581611d8357fe5b049050809150509392505050565b6000838311158290611e3e576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b83811015611e03578082015181840152602081019050611de8565b50505050905090810190601f168015611e305780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385039050809150509392505050565b6040518060600160405280600081526020016000815260200160008152509056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f77a265627a7a72315820e977d99e09a218ba0eda34a0b32d941b18a74c33bcc1f30ebdb5426e6992ec5964736f6c63430005110032",
+  "sourceMap": "140:688:13:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;140:688:13;;;;;;;",
+  "deployedSourceMap": "140:688:13:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;140:688:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1053:100:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1053:100:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1093:103:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1093:103:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;3631:171:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3631:171:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;5583:135;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;5583:135:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;6625:127;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6625:127:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1906:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1457:98;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2310:106;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1202:126:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1202:126:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1249:74:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;6893:127;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6893:127:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;7170:129;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;7170:129:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;6326:162;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6326:162:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2422:112;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2002:98;;;:::i;:::-;;;;;;;;;;;;;;;;;;;5868:152;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;5868:152:5;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4677:373;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1706:94;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;4118:126;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;4118:126:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;7444:173;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;6758:129;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6758:129:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;5724:138;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;5724:138:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1329:122;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1329:122:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;6151:134;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6151:134:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1806:94;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;3131:259;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3131:259:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2998:127;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2998:127:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4580:91;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1159:84;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1159:84:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3808:304;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3808:304:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2540:100;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4250:128;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;4250:128:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4384:160;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;4384:160:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;7026:138;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;7026:138:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2646:113;;;:::i;:::-;;;;;;;;;;;;;;;;;;;981:106:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;981:106:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;2868:92:5;;;:::i;:::-;;;;;;;;;;;;;;;;;;;3396:229;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3396:229:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;5440:137;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;5440:137:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2106:98;;;:::i;:::-;;;;;;;;;;;;;;;;;;;7305:133;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;7305:133:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1561:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1561:108:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2765:97;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6494:125;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6494:125:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2210:94;;;:::i;:::-;;;;;;;;;;;;;;;;;;;6026:119;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6026:119:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1053:100;1090:13;1115:31;;;;;;;;;;;;;;;;;;;1053:100;:::o;1093:103:12:-;1161:4;1184:5;1177:12;;1093:103;;;;:::o;3631:171:5:-;3719:7;3745:8;:34;;:43;3780:7;3745:43;;;;;;;;;;;;;;;:50;3789:5;3745:50;;;;;;;;;;;;3738:57;;3631:171;;;;:::o;5583:135::-;5646:7;5672:6;:13;;:20;5686:5;5672:20;;;;;;;;;;;:28;;:39;;;5665:46;;5583:135;;;:::o;6625:127::-;6684:7;6710:6;:17;;:28;6728:9;6710:28;;;;;;;;;;;;;;;:35;;;6703:42;;6625:127;;;:::o;1906:90::-;1943:7;1969:6;:15;;:20;;;;;;;;;;;;1962:27;;1906:90;:::o;1457:98::-;1501:7;1527:6;:14;;:21;;;1520:28;;1457:98;:::o;2310:106::-;2358:7;2384:6;:14;;:25;;;2377:32;;2310:106;:::o;1202:126:12:-;1293:4;1316:5;1309:12;;1202:126;;;;;:::o;1249:74:5:-;1290:5;1314:2;1307:9;;1249:74;:::o;6893:127::-;6952:7;6978:6;:17;;:28;6996:9;6978:28;;;;;;;;;;;;;;;:35;;;6971:42;;6893:127;;;:::o;7170:129::-;7231:4;7291:1;7254:6;:17;;:28;7272:9;7254:28;;;;;;;;;;;;;;;:34;;;:38;7247:45;;7170:129;;;:::o;6326:162::-;6405:14;6438:6;:17;;:28;6456:9;6438:28;;;;;;;;;;;;;;;:34;;:43;6473:7;6438:43;;;;;;;;;;;;;;;;;;;;;;;;;6431:50;;6326:162;;;;:::o;2422:112::-;2476:7;2502:8;:25;;;2495:32;;2422:112;:::o;2002:98::-;2046:7;2072:6;:14;;:21;;;2065:28;;2002:98;:::o;5868:152::-;5947:7;5973:6;:13;;:20;5987:5;5973:20;;;;;;;;;;;:28;;:37;;6011:1;5973:40;;;;;;;;;;;;;;;;5966:47;;5868:152;;;;:::o;4677:373::-;4719:7;4738:38;;:::i;:::-;4779:35;:33;:35::i;:::-;4738:76;;4824:39;;:::i;:::-;4866:36;:34;:36::i;:::-;4824:78;;4939:7;:13;;;4920:16;:14;:16::i;:::-;:32;:123;;5013:30;5035:7;5013:21;:30::i;:::-;4920:123;;;4967:31;4989:8;4967:21;:31::i;:::-;4920:123;4913:130;;;;4677:373;:::o;1706:94::-;1745:7;1771:6;:15;;:22;;;;;;;;;;;;1764:29;;1706:94;:::o;4118:126::-;4176:7;4202:6;:15;;:24;4218:7;4202:24;;;;;;;;;;;;;;;:35;;;4195:42;;4118:126;;;:::o;7444:173::-;7491:12;7515;940:66;7530:19;;7515:34;;7596:4;7590:11;7582:19;;7568:43;;:::o;6758:129::-;6818:7;6844:6;:17;;:28;6862:9;6844:28;;;;;;;;;;;;;;;:36;;;6837:43;;6758:129;;;:::o;5724:138::-;5785:7;5811:6;:13;;:20;5825:5;5811:20;;;;;;;;;;;:28;;:37;;:44;;;;5804:51;;5724:138;;;:::o;1329:122::-;1386:7;1412:6;:15;;:24;1428:7;1412:24;;;;;;;;;;;;;;;:32;;;1405:39;;1329:122;;;:::o;6151:134::-;6212:4;6244:34;:32;:34::i;:::-;6235:5;:43;;6228:50;;6151:134;;;:::o;1806:94::-;1845:7;1871:6;:15;;:22;;;;;;;;;;;;1864:29;;1806:94;:::o;3131:259::-;3194:7;3213:19;3235:13;:11;:13::i;:::-;3213:35;;3277:1;3262:11;:16;3258:55;;;3301:1;3294:8;;;;;3258:55;3329:54;3371:11;3329:37;3347:18;3357:7;3347:9;:18::i;:::-;3329:13;:11;:13::i;:::-;:17;;:37;;;;:::i;:::-;:41;;:54;;;;:::i;:::-;3322:61;;;3131:259;;;;:::o;2998:127::-;3061:7;3087:6;:15;;:24;3103:7;3087:24;;;;;;;;;;;;;;;:31;;;3080:38;;2998:127;;;:::o;4580:91::-;4618:7;4644:6;:12;;:20;;;4637:27;;4580:91;:::o;1159:84::-;1198:13;1223;;;;;;;;;;;;;;;;;;;1159:84;:::o;3808:304::-;3864:14;3933:7;:5;:7::i;:::-;3894:6;:15;;:24;3910:7;3894:24;;;;;;;;;;;;;;;:36;;;:46;3890:105;;;3963:21;3956:28;;;;3890:105;4023:6;:15;;:24;4039:7;4023:24;;;;;;;;;;;;;;;:35;;;4012:7;:5;:7::i;:::-;:46;;:93;;4085:20;4012:93;;;4061:21;4012:93;4005:100;;3808:304;;;;:::o;2540:100::-;2585:7;2611:6;:14;;:22;;;2604:29;;2540:100;:::o;4250:128::-;4309:7;4335:6;:15;;:24;4351:7;4335:24;;;;;;;;;;;;;;;:36;;;4328:43;;4250:128;;;:::o;4384:160::-;4463:7;4489:6;:15;;:22;4505:5;4489:22;;;;;;;;;;;;;;;:39;;:48;4529:7;4489:48;;;;;;;;;;;;;;;;4482:55;;4384:160;;;;:::o;7026:138::-;7084:7;7110:47;7136:20;7146:9;7136;:20::i;:::-;7110:21;7121:9;7110:10;:21::i;:::-;:25;;:47;;;;:::i;:::-;7103:54;;7026:138;;;:::o;2646:113::-;2687:7;2713:39;2740:11;:9;:11::i;:::-;2713:8;:6;:8::i;:::-;:20;;;:22;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2713:22:5;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2713:22:5;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2713:22:5;;;;;;;;;;;;;;;;:26;;:39;;;;:::i;:::-;2706:46;;2646:113;:::o;981:106:12:-;1052:4;1075:5;1068:12;;981:106;;;;:::o;2868:92:5:-;2909:7;2935:8;:12;;:18;;;2928:25;;2868:92;:::o;3396:229::-;3475:7;3527:1;3498:25;3517:5;3498:18;:25::i;:::-;:30;3494:69;;;3551:1;3544:8;;;;3494:69;3579:6;:15;;:24;3595:7;3579:24;;;;;;;;;;;;;;;:32;;:39;3612:5;3579:39;;;;;;;;;;;;3572:46;;3396:229;;;;;:::o;5440:137::-;5504:7;5530:6;:13;;:20;5544:5;5530:20;;;;;;;;;;;:28;;:40;;;5523:47;;5440:137;;;:::o;2106:98::-;2150:7;2176:6;:14;;:21;;;2169:28;;2106:98;:::o;7305:133::-;7368:4;7391:6;:17;;:28;7409:9;7391:28;;;;;;;;;;;;;;;:40;;;;;;;;;;;;7384:47;;7305:133;;;:::o;1561:108::-;1635:7;1661:1;1654:8;;1561:108;;;;:::o;2765:97::-;2807:10;2836:8;:12;;:19;;;;;;;;;;;;2829:26;;2765:97;:::o;6494:125::-;6552:7;6578:6;:17;;:28;6596:9;6578:28;;;;;;;;;;;;;;;:34;;;6571:41;;6494:125;;;:::o;2210:94::-;2252:7;2278:6;:14;;:19;;;2271:26;;2210:94;:::o;6026:119::-;6085:7;6111:6;:13;;:20;6125:5;6111:20;;;;;;;;;;;:27;;;6104:34;;6026:119;;;:::o;4046:253:0:-;4104:20;;:::i;:::-;4143:149;;;;;;;;1690:3;4143:149;;;;1746:10;4143:149;;;;1810:5;4143:149;;;4136:156;;4046:253;:::o;3783:257::-;3842:20;;:::i;:::-;3881:152;;;;;;;;1509:2;3881:152;;;;1565:10;3881:152;;;;1630:5;3881:152;;;3874:159;;3783:257;:::o;5337:97:5:-;5386:7;5412:15;5405:22;;5337:97;:::o;5056:244::-;5150:7;5176:117;5277:8;:15;;;5176:83;5243:8;:15;;;5176:49;5210:8;:14;;;5176:16;:14;:16::i;:::-;:33;;:49;;;;:::i;:::-;:66;;:83;;;;:::i;:::-;:100;;:117;;;;:::i;:::-;5169:124;;5056:244;;;:::o;4424:110:0:-;4481:7;891:2;4500:27;;4424:110;:::o;2159:459:57:-;2217:7;2463:1;2458;:6;2454:45;;;2487:1;2480:8;;;;2454:45;2509:9;2525:1;2521;:5;2509:17;;2553:1;2548;2544;:5;;;;;;:10;2536:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2610:1;2603:8;;;2159:459;;;;;:::o;3073:130::-;3131:7;3157:39;3161:1;3164;3157:39;;;;;;;;;;;;;;;;;:3;:39::i;:::-;3150:46;;3073:130;;;;:::o;834:176::-;892:7;911:9;927:1;923;:5;911:17;;951:1;946;:6;;938:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1002:1;995:8;;;834:176;;;;:::o;1274:134::-;1332:7;1358:43;1362:1;1365;1358:43;;;;;;;;;;;;;;;;;:3;:43::i;:::-;1351:50;;1274:134;;;;:::o;3718:338::-;3804:7;3901:1;3897;:5;3904:12;3889:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;3889:28:57;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3927:9;3943:1;3939;:5;;;;;;3927:17;;4048:1;4041:8;;;3718:338;;;;;:::o;1732:187::-;1818:7;1850:1;1845;:6;;1853:12;1837:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1837:29:57;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1876:9;1892:1;1888;:5;1876:17;;1911:1;1904:8;;;1732:187;;;;;:::o;140:688:13:-;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.17;\n\nimport \"../Constants.sol\";\nimport \"../external/Decimal.sol\";\nimport \"./Setters.sol\";\nimport \"./Comptroller.sol\";\n\ncontract Stabilizer is Setters, Comptroller {\n    event StabilityReward(uint256 indexed epoch, uint256 rate, uint256 amount);\n\n    function step() internal {\n        Decimal.D256 memory debtRatio = Decimal.ratio(totalDebt(), dollar().totalSupply());\n        debtRatio = debtRatio.greaterThan(Constants.getDebtRatioCap()) ? Constants.getDebtRatioCap() : debtRatio;\n\n        Decimal.D256 memory epochRate = Constants.getStabilityRewardMin().add(debtRatio.mul(Constants.getStabilityRewardRate()));\n        uint256 reward = epochRate.mul(totalBonded()).asUint256();\n        uint256 rewarded = stabilityReward(reward);\n\n        emit StabilityReward(epoch(), epochRate.value, rewarded);\n    }\n}\n",
+  "sourcePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Stabilizer.sol",
+  "ast": {
+    "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Stabilizer.sol",
+    "exportedSymbols": {
+      "Stabilizer": [
+        4873
+      ]
+    },
+    "id": 4874,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4784,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:13"
+      },
+      {
+        "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/Constants.sol",
+        "file": "../Constants.sol",
+        "id": 4785,
+        "nodeType": "ImportDirective",
+        "scope": 4874,
+        "sourceUnit": 410,
+        "src": "26:26:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/external/Decimal.sol",
+        "file": "../external/Decimal.sol",
+        "id": 4786,
+        "nodeType": "ImportDirective",
+        "scope": 4874,
+        "sourceUnit": 5560,
+        "src": "53:33:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Setters.sol",
+        "file": "./Setters.sol",
+        "id": 4787,
+        "nodeType": "ImportDirective",
+        "scope": 4874,
+        "sourceUnit": 4783,
+        "src": "87:23:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Comptroller.sol",
+        "file": "./Comptroller.sol",
+        "id": 4788,
+        "nodeType": "ImportDirective",
+        "scope": 4874,
+        "sourceUnit": 1288,
+        "src": "111:27:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4789,
+              "name": "Setters",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4782,
+              "src": "163:7:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Setters_$4782",
+                "typeString": "contract Setters"
+              }
+            },
+            "id": 4790,
+            "nodeType": "InheritanceSpecifier",
+            "src": "163:7:13"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4791,
+              "name": "Comptroller",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1287,
+              "src": "172:11:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Comptroller_$1287",
+                "typeString": "contract Comptroller"
+              }
+            },
+            "id": 4792,
+            "nodeType": "InheritanceSpecifier",
+            "src": "172:11:13"
+          }
+        ],
+        "contractDependencies": [
+          1287,
+          2203,
+          4782,
+          5011
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4873,
+        "linearizedBaseContracts": [
+          4873,
+          1287,
+          4782,
+          2203,
+          5011
+        ],
+        "name": "Stabilizer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4800,
+            "name": "StabilityReward",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4799,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4794,
+                  "indexed": true,
+                  "name": "epoch",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4800,
+                  "src": "212:21:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4793,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "212:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4796,
+                  "indexed": false,
+                  "name": "rate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4800,
+                  "src": "235:12:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4795,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "235:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4798,
+                  "indexed": false,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4800,
+                  "src": "249:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4797,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "249:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "211:53:13"
+            },
+            "src": "190:75:13"
+          },
+          {
+            "body": {
+              "id": 4871,
+              "nodeType": "Block",
+              "src": "296:530:13",
+              "statements": [
+                {
+                  "assignments": [
+                    4806
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4806,
+                      "name": "debtRatio",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4871,
+                      "src": "306:29:13",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                        "typeString": "struct Decimal.D256"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 4805,
+                        "name": "Decimal.D256",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 5097,
+                        "src": "306:12:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_storage_ptr",
+                          "typeString": "struct Decimal.D256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4816,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 4809,
+                          "name": "totalDebt",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1663,
+                          "src": "352:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view returns (uint256)"
+                          }
+                        },
+                        "id": 4810,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "352:11:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "argumentTypes": null,
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 4811,
+                              "name": "dollar",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1613,
+                              "src": "365:6:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_view$__$returns$_t_contract$_IDollar_$11306_$",
+                                "typeString": "function () view returns (contract IDollar)"
+                              }
+                            },
+                            "id": 4812,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "365:8:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IDollar_$11306",
+                              "typeString": "contract IDollar"
+                            }
+                          },
+                          "id": 4813,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "totalSupply",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 12344,
+                          "src": "365:20:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view external returns (uint256)"
+                          }
+                        },
+                        "id": 4814,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "365:22:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 4807,
+                        "name": "Decimal",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5559,
+                        "src": "338:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_Decimal_$5559_$",
+                          "typeString": "type(library Decimal)"
+                        }
+                      },
+                      "id": 4808,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "ratio",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5150,
+                      "src": "338:13:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_struct$_D256_$5097_memory_ptr_$",
+                        "typeString": "function (uint256,uint256) pure returns (struct Decimal.D256 memory)"
+                      }
+                    },
+                    "id": 4815,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "338:50:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                      "typeString": "struct Decimal.D256 memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "306:82:13"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 4829,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 4817,
+                      "name": "debtRatio",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4806,
+                      "src": "398:9:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                        "typeString": "struct Decimal.D256 memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "condition": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 4820,
+                                "name": "Constants",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 409,
+                                "src": "432:9:13",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_contract$_Constants_$409_$",
+                                  "typeString": "type(library Constants)"
+                                }
+                              },
+                              "id": 4821,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "getDebtRatioCap",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 300,
+                              "src": "432:25:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_D256_$5097_memory_ptr_$",
+                                "typeString": "function () pure returns (struct Decimal.D256 memory)"
+                              }
+                            },
+                            "id": 4822,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "432:27:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 4818,
+                            "name": "debtRatio",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4806,
+                            "src": "410:9:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          },
+                          "id": 4819,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "greaterThan",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 5432,
+                          "src": "410:21:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_struct$_D256_$5097_memory_ptr_$_t_struct$_D256_$5097_memory_ptr_$returns$_t_bool_$bound_to$_t_struct$_D256_$5097_memory_ptr_$",
+                            "typeString": "function (struct Decimal.D256 memory,struct Decimal.D256 memory) pure returns (bool)"
+                          }
+                        },
+                        "id": 4823,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "410:50:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "falseExpression": {
+                        "argumentTypes": null,
+                        "id": 4827,
+                        "name": "debtRatio",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4806,
+                        "src": "493:9:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                          "typeString": "struct Decimal.D256 memory"
+                        }
+                      },
+                      "id": 4828,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "Conditional",
+                      "src": "410:92:13",
+                      "trueExpression": {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 4824,
+                            "name": "Constants",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 409,
+                            "src": "463:9:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_Constants_$409_$",
+                              "typeString": "type(library Constants)"
+                            }
+                          },
+                          "id": 4825,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "getDebtRatioCap",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 300,
+                          "src": "463:25:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_D256_$5097_memory_ptr_$",
+                            "typeString": "function () pure returns (struct Decimal.D256 memory)"
+                          }
+                        },
+                        "id": 4826,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "463:27:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                          "typeString": "struct Decimal.D256 memory"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                        "typeString": "struct Decimal.D256 memory"
+                      }
+                    },
+                    "src": "398:104:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                      "typeString": "struct Decimal.D256 memory"
+                    }
+                  },
+                  "id": 4830,
+                  "nodeType": "ExpressionStatement",
+                  "src": "398:104:13"
+                },
+                {
+                  "assignments": [
+                    4834
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4834,
+                      "name": "epochRate",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4871,
+                      "src": "513:29:13",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                        "typeString": "struct Decimal.D256"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 4833,
+                        "name": "Decimal.D256",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 5097,
+                        "src": "513:12:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_storage_ptr",
+                          "typeString": "struct Decimal.D256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4846,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 4841,
+                                "name": "Constants",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 409,
+                                "src": "597:9:13",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_contract$_Constants_$409_$",
+                                  "typeString": "type(library Constants)"
+                                }
+                              },
+                              "id": 4842,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "getStabilityRewardRate",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 368,
+                              "src": "597:32:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_D256_$5097_memory_ptr_$",
+                                "typeString": "function () pure returns (struct Decimal.D256 memory)"
+                              }
+                            },
+                            "id": 4843,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "597:34:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 4839,
+                            "name": "debtRatio",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4806,
+                            "src": "583:9:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          },
+                          "id": 4840,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "mul",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 5379,
+                          "src": "583:13:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_struct$_D256_$5097_memory_ptr_$_t_struct$_D256_$5097_memory_ptr_$returns$_t_struct$_D256_$5097_memory_ptr_$bound_to$_t_struct$_D256_$5097_memory_ptr_$",
+                            "typeString": "function (struct Decimal.D256 memory,struct Decimal.D256 memory) pure returns (struct Decimal.D256 memory)"
+                          }
+                        },
+                        "id": 4844,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "583:49:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                          "typeString": "struct Decimal.D256 memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                          "typeString": "struct Decimal.D256 memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 4835,
+                            "name": "Constants",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 409,
+                            "src": "545:9:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_Constants_$409_$",
+                              "typeString": "type(library Constants)"
+                            }
+                          },
+                          "id": 4836,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "getStabilityRewardMin",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 357,
+                          "src": "545:31:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_D256_$5097_memory_ptr_$",
+                            "typeString": "function () pure returns (struct Decimal.D256 memory)"
+                          }
+                        },
+                        "id": 4837,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "545:33:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                          "typeString": "struct Decimal.D256 memory"
+                        }
+                      },
+                      "id": 4838,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "add",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5318,
+                      "src": "545:37:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_struct$_D256_$5097_memory_ptr_$_t_struct$_D256_$5097_memory_ptr_$returns$_t_struct$_D256_$5097_memory_ptr_$bound_to$_t_struct$_D256_$5097_memory_ptr_$",
+                        "typeString": "function (struct Decimal.D256 memory,struct Decimal.D256 memory) pure returns (struct Decimal.D256 memory)"
+                      }
+                    },
+                    "id": 4845,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "545:88:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                      "typeString": "struct Decimal.D256 memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "513:120:13"
+                },
+                {
+                  "assignments": [
+                    4848
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4848,
+                      "name": "reward",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4871,
+                      "src": "643:14:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 4847,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "643:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4856,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "id": 4851,
+                              "name": "totalBonded",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1643,
+                              "src": "674:11:13",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                                "typeString": "function () view returns (uint256)"
+                              }
+                            },
+                            "id": 4852,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "674:13:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 4849,
+                            "name": "epochRate",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4834,
+                            "src": "660:9:13",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                              "typeString": "struct Decimal.D256 memory"
+                            }
+                          },
+                          "id": 4850,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "mul",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 5234,
+                          "src": "660:13:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_struct$_D256_$5097_memory_ptr_$_t_uint256_$returns$_t_struct$_D256_$5097_memory_ptr_$bound_to$_t_struct$_D256_$5097_memory_ptr_$",
+                            "typeString": "function (struct Decimal.D256 memory,uint256) pure returns (struct Decimal.D256 memory)"
+                          }
+                        },
+                        "id": 4853,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "660:28:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                          "typeString": "struct Decimal.D256 memory"
+                        }
+                      },
+                      "id": 4854,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "asUint256",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5510,
+                      "src": "660:38:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_struct$_D256_$5097_memory_ptr_$returns$_t_uint256_$bound_to$_t_struct$_D256_$5097_memory_ptr_$",
+                        "typeString": "function (struct Decimal.D256 memory) pure returns (uint256)"
+                      }
+                    },
+                    "id": 4855,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "660:40:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "643:57:13"
+                },
+                {
+                  "assignments": [
+                    4858
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 4858,
+                      "name": "rewarded",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 4871,
+                      "src": "710:16:13",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 4857,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "710:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 4862,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 4860,
+                        "name": "reward",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4848,
+                        "src": "745:6:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 4859,
+                      "name": "stabilityReward",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1116,
+                      "src": "729:15:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (uint256) returns (uint256)"
+                      }
+                    },
+                    "id": 4861,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "729:23:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "710:42:13"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "id": 4864,
+                          "name": "epoch",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1910,
+                          "src": "784:5:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                            "typeString": "function () view returns (uint256)"
+                          }
+                        },
+                        "id": 4865,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "784:7:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 4866,
+                          "name": "epochRate",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4834,
+                          "src": "793:9:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                            "typeString": "struct Decimal.D256 memory"
+                          }
+                        },
+                        "id": 4867,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 5096,
+                        "src": "793:15:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 4868,
+                        "name": "rewarded",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4858,
+                        "src": "810:8:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 4863,
+                      "name": "StabilityReward",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4800,
+                      "src": "768:15:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,uint256,uint256)"
+                      }
+                    },
+                    "id": 4869,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "768:51:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 4870,
+                  "nodeType": "EmitStatement",
+                  "src": "763:56:13"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4872,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "step",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4801,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "284:2:13"
+            },
+            "returnParameters": {
+              "id": 4802,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "296:0:13"
+            },
+            "scope": 4873,
+            "src": "271:555:13",
+            "stateMutability": "nonpayable",
+            "superFunction": 3597,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 4874,
+        "src": "140:688:13"
+      }
+    ],
+    "src": "0:829:13"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Stabilizer.sol",
+      "exportedSymbols": {
+        "Stabilizer": [
+          4873
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".17"
+          ]
+        },
+        "id": 4784,
+        "name": "PragmaDirective",
+        "src": "0:24:13"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 410,
+          "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/Constants.sol",
+          "file": "../Constants.sol",
+          "scope": 4874,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4785,
+        "name": "ImportDirective",
+        "src": "26:26:13"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 5560,
+          "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/external/Decimal.sol",
+          "file": "../external/Decimal.sol",
+          "scope": 4874,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4786,
+        "name": "ImportDirective",
+        "src": "53:33:13"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 4783,
+          "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Setters.sol",
+          "file": "./Setters.sol",
+          "scope": 4874,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4787,
+        "name": "ImportDirective",
+        "src": "87:23:13"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1288,
+          "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Comptroller.sol",
+          "file": "./Comptroller.sol",
+          "scope": 4874,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4788,
+        "name": "ImportDirective",
+        "src": "111:27:13"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            1287,
+            2203,
+            4782,
+            5011
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            4873,
+            1287,
+            4782,
+            2203,
+            5011
+          ],
+          "name": "Stabilizer",
+          "scope": 4874
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Setters",
+                  "referencedDeclaration": 4782,
+                  "type": "contract Setters"
+                },
+                "id": 4789,
+                "name": "UserDefinedTypeName",
+                "src": "163:7:13"
+              }
+            ],
+            "id": 4790,
+            "name": "InheritanceSpecifier",
+            "src": "163:7:13"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Comptroller",
+                  "referencedDeclaration": 1287,
+                  "type": "contract Comptroller"
+                },
+                "id": 4791,
+                "name": "UserDefinedTypeName",
+                "src": "172:11:13"
+              }
+            ],
+            "id": 4792,
+            "name": "InheritanceSpecifier",
+            "src": "172:11:13"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "StabilityReward"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "epoch",
+                      "scope": 4800,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4793,
+                        "name": "ElementaryTypeName",
+                        "src": "212:7:13"
+                      }
+                    ],
+                    "id": 4794,
+                    "name": "VariableDeclaration",
+                    "src": "212:21:13"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "rate",
+                      "scope": 4800,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4795,
+                        "name": "ElementaryTypeName",
+                        "src": "235:7:13"
+                      }
+                    ],
+                    "id": 4796,
+                    "name": "VariableDeclaration",
+                    "src": "235:12:13"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "amount",
+                      "scope": 4800,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4797,
+                        "name": "ElementaryTypeName",
+                        "src": "249:7:13"
+                      }
+                    ],
+                    "id": 4798,
+                    "name": "VariableDeclaration",
+                    "src": "249:14:13"
+                  }
+                ],
+                "id": 4799,
+                "name": "ParameterList",
+                "src": "211:53:13"
+              }
+            ],
+            "id": 4800,
+            "name": "EventDefinition",
+            "src": "190:75:13"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "step",
+              "scope": 4873,
+              "stateMutability": "nonpayable",
+              "superFunction": 3597,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4801,
+                "name": "ParameterList",
+                "src": "284:2:13"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4802,
+                "name": "ParameterList",
+                "src": "296:0:13"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        4806
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "debtRatio",
+                          "scope": 4871,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Decimal.D256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Decimal.D256",
+                              "referencedDeclaration": 5097,
+                              "type": "struct Decimal.D256"
+                            },
+                            "id": 4805,
+                            "name": "UserDefinedTypeName",
+                            "src": "306:12:13"
+                          }
+                        ],
+                        "id": 4806,
+                        "name": "VariableDeclaration",
+                        "src": "306:29:13"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "struct Decimal.D256 memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "ratio",
+                              "referencedDeclaration": 5150,
+                              "type": "function (uint256,uint256) pure returns (struct Decimal.D256 memory)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5559,
+                                  "type": "type(library Decimal)",
+                                  "value": "Decimal"
+                                },
+                                "id": 4807,
+                                "name": "Identifier",
+                                "src": "338:7:13"
+                              }
+                            ],
+                            "id": 4808,
+                            "name": "MemberAccess",
+                            "src": "338:13:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1663,
+                                  "type": "function () view returns (uint256)",
+                                  "value": "totalDebt"
+                                },
+                                "id": 4809,
+                                "name": "Identifier",
+                                "src": "352:9:13"
+                              }
+                            ],
+                            "id": 4810,
+                            "name": "FunctionCall",
+                            "src": "352:11:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "totalSupply",
+                                  "referencedDeclaration": 12344,
+                                  "type": "function () view external returns (uint256)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "arguments": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "contract IDollar",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            null
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 1613,
+                                          "type": "function () view returns (contract IDollar)",
+                                          "value": "dollar"
+                                        },
+                                        "id": 4811,
+                                        "name": "Identifier",
+                                        "src": "365:6:13"
+                                      }
+                                    ],
+                                    "id": 4812,
+                                    "name": "FunctionCall",
+                                    "src": "365:8:13"
+                                  }
+                                ],
+                                "id": 4813,
+                                "name": "MemberAccess",
+                                "src": "365:20:13"
+                              }
+                            ],
+                            "id": 4814,
+                            "name": "FunctionCall",
+                            "src": "365:22:13"
+                          }
+                        ],
+                        "id": 4815,
+                        "name": "FunctionCall",
+                        "src": "338:50:13"
+                      }
+                    ],
+                    "id": 4816,
+                    "name": "VariableDeclarationStatement",
+                    "src": "306:82:13"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Decimal.D256 memory"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4806,
+                              "type": "struct Decimal.D256 memory",
+                              "value": "debtRatio"
+                            },
+                            "id": 4817,
+                            "name": "Identifier",
+                            "src": "398:9:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "struct Decimal.D256 memory"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "bool",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                                          "typeString": "struct Decimal.D256 memory"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "greaterThan",
+                                      "referencedDeclaration": 5432,
+                                      "type": "function (struct Decimal.D256 memory,struct Decimal.D256 memory) pure returns (bool)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4806,
+                                          "type": "struct Decimal.D256 memory",
+                                          "value": "debtRatio"
+                                        },
+                                        "id": 4818,
+                                        "name": "Identifier",
+                                        "src": "410:9:13"
+                                      }
+                                    ],
+                                    "id": 4819,
+                                    "name": "MemberAccess",
+                                    "src": "410:21:13"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "arguments": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "struct Decimal.D256 memory",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            null
+                                          ],
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "member_name": "getDebtRatioCap",
+                                          "referencedDeclaration": 300,
+                                          "type": "function () pure returns (struct Decimal.D256 memory)"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 409,
+                                              "type": "type(library Constants)",
+                                              "value": "Constants"
+                                            },
+                                            "id": 4820,
+                                            "name": "Identifier",
+                                            "src": "432:9:13"
+                                          }
+                                        ],
+                                        "id": 4821,
+                                        "name": "MemberAccess",
+                                        "src": "432:25:13"
+                                      }
+                                    ],
+                                    "id": 4822,
+                                    "name": "FunctionCall",
+                                    "src": "432:27:13"
+                                  }
+                                ],
+                                "id": 4823,
+                                "name": "FunctionCall",
+                                "src": "410:50:13"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "arguments": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "struct Decimal.D256 memory",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "getDebtRatioCap",
+                                      "referencedDeclaration": 300,
+                                      "type": "function () pure returns (struct Decimal.D256 memory)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 409,
+                                          "type": "type(library Constants)",
+                                          "value": "Constants"
+                                        },
+                                        "id": 4824,
+                                        "name": "Identifier",
+                                        "src": "463:9:13"
+                                      }
+                                    ],
+                                    "id": 4825,
+                                    "name": "MemberAccess",
+                                    "src": "463:25:13"
+                                  }
+                                ],
+                                "id": 4826,
+                                "name": "FunctionCall",
+                                "src": "463:27:13"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4806,
+                                  "type": "struct Decimal.D256 memory",
+                                  "value": "debtRatio"
+                                },
+                                "id": 4827,
+                                "name": "Identifier",
+                                "src": "493:9:13"
+                              }
+                            ],
+                            "id": 4828,
+                            "name": "Conditional",
+                            "src": "410:92:13"
+                          }
+                        ],
+                        "id": 4829,
+                        "name": "Assignment",
+                        "src": "398:104:13"
+                      }
+                    ],
+                    "id": 4830,
+                    "name": "ExpressionStatement",
+                    "src": "398:104:13"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        4834
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "epochRate",
+                          "scope": 4871,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Decimal.D256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Decimal.D256",
+                              "referencedDeclaration": 5097,
+                              "type": "struct Decimal.D256"
+                            },
+                            "id": 4833,
+                            "name": "UserDefinedTypeName",
+                            "src": "513:12:13"
+                          }
+                        ],
+                        "id": 4834,
+                        "name": "VariableDeclaration",
+                        "src": "513:29:13"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "struct Decimal.D256 memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                                  "typeString": "struct Decimal.D256 memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "add",
+                              "referencedDeclaration": 5318,
+                              "type": "function (struct Decimal.D256 memory,struct Decimal.D256 memory) pure returns (struct Decimal.D256 memory)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "arguments": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "struct Decimal.D256 memory",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "getStabilityRewardMin",
+                                      "referencedDeclaration": 357,
+                                      "type": "function () pure returns (struct Decimal.D256 memory)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 409,
+                                          "type": "type(library Constants)",
+                                          "value": "Constants"
+                                        },
+                                        "id": 4835,
+                                        "name": "Identifier",
+                                        "src": "545:9:13"
+                                      }
+                                    ],
+                                    "id": 4836,
+                                    "name": "MemberAccess",
+                                    "src": "545:31:13"
+                                  }
+                                ],
+                                "id": 4837,
+                                "name": "FunctionCall",
+                                "src": "545:33:13"
+                              }
+                            ],
+                            "id": 4838,
+                            "name": "MemberAccess",
+                            "src": "545:37:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "struct Decimal.D256 memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_struct$_D256_$5097_memory_ptr",
+                                      "typeString": "struct Decimal.D256 memory"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "mul",
+                                  "referencedDeclaration": 5379,
+                                  "type": "function (struct Decimal.D256 memory,struct Decimal.D256 memory) pure returns (struct Decimal.D256 memory)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 4806,
+                                      "type": "struct Decimal.D256 memory",
+                                      "value": "debtRatio"
+                                    },
+                                    "id": 4839,
+                                    "name": "Identifier",
+                                    "src": "583:9:13"
+                                  }
+                                ],
+                                "id": 4840,
+                                "name": "MemberAccess",
+                                "src": "583:13:13"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "arguments": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "struct Decimal.D256 memory",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "getStabilityRewardRate",
+                                      "referencedDeclaration": 368,
+                                      "type": "function () pure returns (struct Decimal.D256 memory)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 409,
+                                          "type": "type(library Constants)",
+                                          "value": "Constants"
+                                        },
+                                        "id": 4841,
+                                        "name": "Identifier",
+                                        "src": "597:9:13"
+                                      }
+                                    ],
+                                    "id": 4842,
+                                    "name": "MemberAccess",
+                                    "src": "597:32:13"
+                                  }
+                                ],
+                                "id": 4843,
+                                "name": "FunctionCall",
+                                "src": "597:34:13"
+                              }
+                            ],
+                            "id": 4844,
+                            "name": "FunctionCall",
+                            "src": "583:49:13"
+                          }
+                        ],
+                        "id": 4845,
+                        "name": "FunctionCall",
+                        "src": "545:88:13"
+                      }
+                    ],
+                    "id": 4846,
+                    "name": "VariableDeclarationStatement",
+                    "src": "513:120:13"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        4848
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "reward",
+                          "scope": 4871,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 4847,
+                            "name": "ElementaryTypeName",
+                            "src": "643:7:13"
+                          }
+                        ],
+                        "id": 4848,
+                        "name": "VariableDeclaration",
+                        "src": "643:14:13"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "asUint256",
+                              "referencedDeclaration": 5510,
+                              "type": "function (struct Decimal.D256 memory) pure returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "struct Decimal.D256 memory",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "mul",
+                                      "referencedDeclaration": 5234,
+                                      "type": "function (struct Decimal.D256 memory,uint256) pure returns (struct Decimal.D256 memory)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 4834,
+                                          "type": "struct Decimal.D256 memory",
+                                          "value": "epochRate"
+                                        },
+                                        "id": 4849,
+                                        "name": "Identifier",
+                                        "src": "660:9:13"
+                                      }
+                                    ],
+                                    "id": 4850,
+                                    "name": "MemberAccess",
+                                    "src": "660:13:13"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "arguments": [
+                                        null
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "uint256",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            null
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 1643,
+                                          "type": "function () view returns (uint256)",
+                                          "value": "totalBonded"
+                                        },
+                                        "id": 4851,
+                                        "name": "Identifier",
+                                        "src": "674:11:13"
+                                      }
+                                    ],
+                                    "id": 4852,
+                                    "name": "FunctionCall",
+                                    "src": "674:13:13"
+                                  }
+                                ],
+                                "id": 4853,
+                                "name": "FunctionCall",
+                                "src": "660:28:13"
+                              }
+                            ],
+                            "id": 4854,
+                            "name": "MemberAccess",
+                            "src": "660:38:13"
+                          }
+                        ],
+                        "id": 4855,
+                        "name": "FunctionCall",
+                        "src": "660:40:13"
+                      }
+                    ],
+                    "id": 4856,
+                    "name": "VariableDeclarationStatement",
+                    "src": "643:57:13"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        4858
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "rewarded",
+                          "scope": 4871,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 4857,
+                            "name": "ElementaryTypeName",
+                            "src": "710:7:13"
+                          }
+                        ],
+                        "id": 4858,
+                        "name": "VariableDeclaration",
+                        "src": "710:16:13"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1116,
+                              "type": "function (uint256) returns (uint256)",
+                              "value": "stabilityReward"
+                            },
+                            "id": 4859,
+                            "name": "Identifier",
+                            "src": "729:15:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4848,
+                              "type": "uint256",
+                              "value": "reward"
+                            },
+                            "id": 4860,
+                            "name": "Identifier",
+                            "src": "745:6:13"
+                          }
+                        ],
+                        "id": 4861,
+                        "name": "FunctionCall",
+                        "src": "729:23:13"
+                      }
+                    ],
+                    "id": 4862,
+                    "name": "VariableDeclarationStatement",
+                    "src": "710:42:13"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4800,
+                              "type": "function (uint256,uint256,uint256)",
+                              "value": "StabilityReward"
+                            },
+                            "id": 4863,
+                            "name": "Identifier",
+                            "src": "768:15:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "arguments": [
+                                null
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "uint256",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    null
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1910,
+                                  "type": "function () view returns (uint256)",
+                                  "value": "epoch"
+                                },
+                                "id": 4864,
+                                "name": "Identifier",
+                                "src": "784:5:13"
+                              }
+                            ],
+                            "id": 4865,
+                            "name": "FunctionCall",
+                            "src": "784:7:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": 5096,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4834,
+                                  "type": "struct Decimal.D256 memory",
+                                  "value": "epochRate"
+                                },
+                                "id": 4866,
+                                "name": "Identifier",
+                                "src": "793:9:13"
+                              }
+                            ],
+                            "id": 4867,
+                            "name": "MemberAccess",
+                            "src": "793:15:13"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4858,
+                              "type": "uint256",
+                              "value": "rewarded"
+                            },
+                            "id": 4868,
+                            "name": "Identifier",
+                            "src": "810:8:13"
+                          }
+                        ],
+                        "id": 4869,
+                        "name": "FunctionCall",
+                        "src": "768:51:13"
+                      }
+                    ],
+                    "id": 4870,
+                    "name": "EmitStatement",
+                    "src": "763:56:13"
+                  }
+                ],
+                "id": 4871,
+                "name": "Block",
+                "src": "296:530:13"
+              }
+            ],
+            "id": 4872,
+            "name": "FunctionDefinition",
+            "src": "271:555:13"
+          }
+        ],
+        "id": 4873,
+        "name": "ContractDefinition",
+        "src": "140:688:13"
+      }
+    ],
+    "id": 4874,
+    "name": "SourceUnit",
+    "src": "0:829:13"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-02-19T15:49:23.584Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {
+      "balanceOfStaged(address)": {
+        "notice": "Account"
+      },
+      "dollar()": {
+        "notice": "Global"
+      },
+      "epoch()": {
+        "notice": "Epoch"
+      },
+      "name()": {
+        "notice": "ERC20 Interface"
+      },
+      "recordedVote(address,address)": {
+        "notice": "Governance"
+      },
+      "transfer(address,uint256)": {
+        "notice": "ERC20 Interface"
+      }
+    }
+  }
+}

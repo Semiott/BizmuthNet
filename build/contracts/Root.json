@@ -1,0 +1,588 @@
+{
+  "contractName": "Root",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "Upgraded",
+      "type": "event"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Root.sol\":\"Root\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Root.sol\":{\"keccak256\":\"0x57ff0491cdbc2bf4c18add9a970ee15b6bfdbdb18767c3c1373f503c7527bee6\",\"urls\":[\"bzz-raw://ea591c384a720488ebd2e35f44303d440b5bd8be3dfba14f03e8bfebe7f29a88\",\"dweb:/ipfs/Qmetq8isinLLN68rys7eAPbpERrcXbwunBK9W1JQFFZadP\"]},\"@openzeppelin/upgrades/contracts/upgradeability/BaseUpgradeabilityProxy.sol\":{\"keccak256\":\"0x1b37f808dc0a45976ad23aa53908c485a74a4d9fbd03066a5ab399c46436e570\",\"urls\":[\"bzz-raw://de04959e1261bbc2ee53a88b98469a888a2f2fa49c07ea87a5d646a8fe438558\",\"dweb:/ipfs/QmUmYQaNnAMfvbfKLniFLHyBzsH77bCMf9NpNSfndfuqWh\"]},\"@openzeppelin/upgrades/contracts/upgradeability/Proxy.sol\":{\"keccak256\":\"0xd8074ae5fa7ee6384ca8196a896612fb044bbf4ff4b7336d03cd97845000ac21\",\"urls\":[\"bzz-raw://3a111e1dc777d80e6c2ad41c6ff2bfb3ae8f61658fd6580ddf9ba9ab0d25a354\",\"dweb:/ipfs/QmSfwvUqqiownzHeMmUiYkejWs6FXR2KLtHQnSzP6FivTj\"]},\"@openzeppelin/upgrades/contracts/upgradeability/UpgradeabilityProxy.sol\":{\"keccak256\":\"0xb02c6349ba01df9902857b6058f92b37f13187775cce9da74f6f28410205445b\",\"urls\":[\"bzz-raw://f05434b5110c9de912e001a5dc2b252947f474346cb8ea5ec26ea2efe7143aa7\",\"dweb:/ipfs/QmbaksVa6vQz926TCHgJniKFuod44QhuGzVFYMtdUgdxba\"]},\"@openzeppelin/upgrades/contracts/utils/Address.sol\":{\"keccak256\":\"0x7be7f8e4c08bc70ff9815e3f11c569f42aa3c447b5bc61fd75fb5cec97f63a9f\",\"urls\":[\"bzz-raw://f301a9226d637e1593916ba2de7b0b28c35f2adc3ca8526289fe1eedafa83bc2\",\"dweb:/ipfs/QmPb991LE8nyvhB4BkX46P1Pan2ijH9tfqWwLAz65VUUKs\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516105153803806105158339818101604052610032919081019061023f565b806040516024016040516020818303038152906040527f8129fc1c000000000000000000000000000000000000000000000000000000007bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff838183161783525050505060016040516100c490610356565b604051809103902060001c0360001b7f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc60001b146100fe57fe5b61010d8261019660201b60201c565b60008151111561018e5760008273ffffffffffffffffffffffffffffffffffffffff168260405161013e919061033f565b600060405180830381855af49150503d8060008114610179576040519150601f19603f3d011682016040523d82523d6000602084013e61017e565b606091505b505090508061018c57600080fd5b505b505050610439565b6101a98161021760201b6100781760201c565b6101e8576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101df9061036b565b60405180910390fd5b60007f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc60001b90508181555050565b600080823b905060008111915050919050565b60008151905061023981610422565b92915050565b60006020828403121561025157600080fd5b600061025f8482850161022a565b91505092915050565b60006102738261038b565b61027d8185610396565b935061028d8185602086016103ef565b80840191505092915050565b60006102a6601c836103b2565b91507f656970313936372e70726f78792e696d706c656d656e746174696f6e000000006000830152601c82019050919050565b60006102e6603b836103a1565b91507f43616e6e6f742073657420612070726f787920696d706c656d656e746174696f60008301527f6e20746f2061206e6f6e2d636f6e7472616374206164647265737300000000006020830152604082019050919050565b600061034b8284610268565b915081905092915050565b600061036182610299565b9150819050919050565b60006020820190508181036000830152610384816102d9565b9050919050565b600081519050919050565b600081905092915050565b600082825260208201905092915050565b600081905092915050565b60006103c8826103cf565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60005b8381101561040d5780820151818401526020810190506103f2565b8381111561041c576000848401525b50505050565b61042b816103bd565b811461043657600080fd5b50565b60ce806104476000396000f3fe6080604052600a600c565b005b60126020565b601e601a6022565b6053565b565b565b6000807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc60001b9050805491505090565b3660008037600080366000845af43d6000803e80600081146073573d6000f35b3d6000fd5b600080823b90506000811191505091905056fea365627a7a72315820c92fafef9083cc17de46edd1c72afb952ad225612b25a0bbb4fb98974087cf1f6c6578706572696d656e74616cf564736f6c63430005110040",
+  "deployedBytecode": "0x6080604052600a600c565b005b60126020565b601e601a6022565b6053565b565b565b6000807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc60001b9050805491505090565b3660008037600080366000845af43d6000803e80600081146073573d6000f35b3d6000fd5b600080823b90506000811191505091905056fea365627a7a72315820c92fafef9083cc17de46edd1c72afb952ad225612b25a0bbb4fb98974087cf1f6c6578706572696d656e74616cf564736f6c63430005110040",
+  "sourceMap": "773:191:11:-;;;816:146;8:9:-1;5:2;;;30:1;27;20:12;5:2;816:146:11;;;;;;;;;;;;;;;;;;;;;;;;882:14;906:39;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;906:39:11;;;;;;;38:4:-1;29:7;25:18;67:10;61:17;96:58;199:8;192:4;186;182:15;179:29;167:10;160:49;0:215;;;906:39:11;955:1:64;910:41;;;;;;;;;;;;;;902:50;;:54;894:63;;778:66:62;871:19:64;;:86;864:94;;;;964:26;983:6;964:18;;;:26;;:::i;:::-;1014:1;999:5;:12;:16;996:104;;;1026:12;1043:6;:19;;1063:5;1043:26;;;;;;;;;;;;;;;;;;;;;;14:1:-1;21;16:31;;;;75:4;69:11;64:16;;144:4;140:9;133:4;115:16;111:27;107:43;104:1;100:51;94:4;87:65;169:16;166:1;159:27;225:16;222:1;215:4;212:1;208:12;193:49;7:242;;16:31;36:4;31:9;;7:242;;1025:44:64;;;1085:7;1077:16;;;;;;996:104;;795:309;;816:146:11;773:191;;1528:305:62;1606:57;1645:17;1606:38;;;;;:57;;:::i;:::-;1598:129;;;;;;;;;;;;;;;;;;;;;;1734:12;778:66;1749:19;;1734:34;;1805:17;1799:4;1792:31;1784:45;;:::o;924:616:65:-;984:4;1000:12;1499:7;1487:20;1479:28;;1532:1;1525:4;:8;1518:15;;;924:616;;;:::o;5:134:-1:-;;89:6;83:13;74:22;;101:33;128:5;101:33;;;68:71;;;;;146:263;;261:2;249:9;240:7;236:23;232:32;229:2;;;277:1;274;267:12;229:2;312:1;329:64;385:7;376:6;365:9;361:22;329:64;;;319:74;;291:108;223:186;;;;;416:356;;544:38;576:5;544:38;;;594:88;675:6;670:3;594:88;;;587:95;;687:52;732:6;727:3;720:4;713:5;709:16;687:52;;;760:6;755:3;751:16;744:23;;524:248;;;;;;780:364;;958:85;1040:2;1035:3;958:85;;;951:92;;1076:30;1072:1;1067:3;1063:11;1056:51;1135:2;1130:3;1126:12;1119:19;;944:200;;;;1153:396;;1313:67;1377:2;1372:3;1313:67;;;1306:74;;1413:34;1409:1;1404:3;1400:11;1393:55;1482:29;1477:2;1472:3;1468:12;1461:51;1540:2;1535:3;1531:12;1524:19;;1299:250;;;;1557:262;;1701:93;1790:3;1781:6;1701:93;;;1694:100;;1811:3;1804:10;;1682:137;;;;;1826:372;;2025:148;2169:3;2025:148;;;2018:155;;2190:3;2183:10;;2006:192;;;;2205:407;;2396:2;2385:9;2381:18;2373:26;;2446:9;2440:4;2436:20;2432:1;2421:9;2417:17;2410:47;2471:131;2597:4;2471:131;;;2463:139;;2367:245;;;;2619:121;;2712:5;2706:12;2696:22;;2677:63;;;;2748:144;;2883:3;2868:18;;2861:31;;;;;2901:163;;3016:6;3011:3;3004:19;3053:4;3048:3;3044:14;3029:29;;2997:67;;;;;3073:145;;3209:3;3194:18;;3187:31;;;;;3226:91;;3288:24;3306:5;3288:24;;;3277:35;;3271:46;;;;3324:121;;3397:42;3390:5;3386:54;3375:65;;3369:76;;;;3453:268;3518:1;3525:101;3539:6;3536:1;3533:13;3525:101;;;3615:1;3610:3;3606:11;3600:18;3596:1;3591:3;3587:11;3580:39;3561:2;3558:1;3554:10;3549:15;;3525:101;;;3641:6;3638:1;3635:13;3632:2;;;3706:1;3697:6;3692:3;3688:16;3681:27;3632:2;3502:219;;;;;3729:117;3798:24;3816:5;3798:24;;;3791:5;3788:35;3778:2;;3837:1;3834;3827:12;3778:2;3772:74;;773:191:11;;;;;;;",
+  "deployedSourceMap": "773:191:11:-;;;453:11:63;:9;:11::i;:::-;773:191:11;1952:90:63;1988:15;:13;:15::i;:::-;2009:28;2019:17;:15;:17::i;:::-;2009:9;:28::i;:::-;1952:90::o;1818:39::-;:::o;958:156:62:-;1008:12;1028;778:66;1043:19;;1028:34;;1099:4;1093:11;1085:19;;1077:33;;:::o;878:731:63:-;1180:12;1177:1;1174;1161:32;1370:1;1367;1353:12;1350:1;1334:14;1329:3;1316:56;1434:14;1431:1;1428;1413:36;1464:6;1524:1;1519:36;;;;1582:14;1579:1;1572:25;1519:36;1538:14;1535:1;1528:25;924:616:65;984:4;1000:12;1499:7;1487:20;1479:28;;1532:1;1525:4;:8;1518:15;;;924:616;;;:::o",
+  "source": "/*\n    Copyright 2020 Empty Set Squad <emptysetsquad@protonmail.com>\n\n    Licensed under the Apache License, Version 2.0 (the \"License\");\n    you may not use this file except in compliance with the License.\n    You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n    Unless required by applicable law or agreed to in writing, software\n    distributed under the License is distributed on an \"AS IS\" BASIS,\n    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n    See the License for the specific language governing permissions and\n    limitations under the License.\n*/\n\npragma solidity ^0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"@openzeppelin/upgrades/contracts/upgradeability/UpgradeabilityProxy.sol\";\n\ncontract Root is UpgradeabilityProxy {\n    constructor (address implementation) UpgradeabilityProxy(\n        implementation,\n        abi.encodeWithSignature(\"initialize()\")\n    ) public { }\n}\n",
+  "sourcePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Root.sol",
+  "ast": {
+    "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Root.sol",
+    "exportedSymbols": {
+      "Root": [
+        3814
+      ]
+    },
+    "id": 3815,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3796,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "630:24:11"
+      },
+      {
+        "id": 3797,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "655:33:11"
+      },
+      {
+        "absolutePath": "@openzeppelin/upgrades/contracts/upgradeability/UpgradeabilityProxy.sol",
+        "file": "@openzeppelin/upgrades/contracts/upgradeability/UpgradeabilityProxy.sol",
+        "id": 3798,
+        "nodeType": "ImportDirective",
+        "scope": 3815,
+        "sourceUnit": 12552,
+        "src": "690:81:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3799,
+              "name": "UpgradeabilityProxy",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 12551,
+              "src": "790:19:11",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_UpgradeabilityProxy_$12551",
+                "typeString": "contract UpgradeabilityProxy"
+              }
+            },
+            "id": 3800,
+            "nodeType": "InheritanceSpecifier",
+            "src": "790:19:11"
+          }
+        ],
+        "contractDependencies": [
+          12464,
+          12502,
+          12551
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3814,
+        "linearizedBaseContracts": [
+          3814,
+          12551,
+          12464,
+          12502
+        ],
+        "name": "Root",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3812,
+              "nodeType": "Block",
+              "src": "959:3:11",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 3813,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 3805,
+                    "name": "implementation",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 3802,
+                    "src": "882:14:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "696e697469616c697a652829",
+                        "id": 3808,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "930:14:11",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_8129fc1cf5a76b8b9d76c7ab5059b1685decddb2380c6e4cebb774b7c17ae83f",
+                          "typeString": "literal_string \"initialize()\""
+                        },
+                        "value": "initialize()"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_8129fc1cf5a76b8b9d76c7ab5059b1685decddb2380c6e4cebb774b7c17ae83f",
+                          "typeString": "literal_string \"initialize()\""
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 3806,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13163,
+                        "src": "906:3:11",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 3807,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "encodeWithSignature",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "906:23:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abiencodewithsignature_pure$_t_string_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function (string memory) pure returns (bytes memory)"
+                      }
+                    },
+                    "id": 3809,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "906:39:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  }
+                ],
+                "id": 3810,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 3804,
+                  "name": "UpgradeabilityProxy",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 12551,
+                  "src": "853:19:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_UpgradeabilityProxy_$12551_$",
+                    "typeString": "type(contract UpgradeabilityProxy)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "853:98:11"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3803,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3802,
+                  "name": "implementation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3813,
+                  "src": "829:22:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3801,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "829:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "828:24:11"
+            },
+            "returnParameters": {
+              "id": 3811,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "959:0:11"
+            },
+            "scope": 3814,
+            "src": "816:146:11",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3815,
+        "src": "773:191:11"
+      }
+    ],
+    "src": "630:335:11"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/dao/Root.sol",
+      "exportedSymbols": {
+        "Root": [
+          3814
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".17"
+          ]
+        },
+        "id": 3796,
+        "name": "PragmaDirective",
+        "src": "630:24:11"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 3797,
+        "name": "PragmaDirective",
+        "src": "655:33:11"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 12552,
+          "absolutePath": "@openzeppelin/upgrades/contracts/upgradeability/UpgradeabilityProxy.sol",
+          "file": "@openzeppelin/upgrades/contracts/upgradeability/UpgradeabilityProxy.sol",
+          "scope": 3815,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 3798,
+        "name": "ImportDirective",
+        "src": "690:81:11"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            12464,
+            12502,
+            12551
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            3814,
+            12551,
+            12464,
+            12502
+          ],
+          "name": "Root",
+          "scope": 3815
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "UpgradeabilityProxy",
+                  "referencedDeclaration": 12551,
+                  "type": "contract UpgradeabilityProxy"
+                },
+                "id": 3799,
+                "name": "UserDefinedTypeName",
+                "src": "790:19:11"
+              }
+            ],
+            "id": 3800,
+            "name": "InheritanceSpecifier",
+            "src": "790:19:11"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "name": "",
+              "scope": 3814,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "implementation",
+                      "scope": 3813,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 3801,
+                        "name": "ElementaryTypeName",
+                        "src": "829:7:11"
+                      }
+                    ],
+                    "id": 3802,
+                    "name": "VariableDeclaration",
+                    "src": "829:22:11"
+                  }
+                ],
+                "id": 3803,
+                "name": "ParameterList",
+                "src": "828:24:11"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3811,
+                "name": "ParameterList",
+                "src": "959:0:11"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 12551,
+                      "type": "type(contract UpgradeabilityProxy)",
+                      "value": "UpgradeabilityProxy"
+                    },
+                    "id": 3804,
+                    "name": "Identifier",
+                    "src": "853:19:11"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 3802,
+                      "type": "address",
+                      "value": "implementation"
+                    },
+                    "id": 3805,
+                    "name": "Identifier",
+                    "src": "882:14:11"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "isStructConstructorCall": false,
+                      "lValueRequested": false,
+                      "names": [
+                        null
+                      ],
+                      "type": "bytes memory",
+                      "type_conversion": false
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_stringliteral_8129fc1cf5a76b8b9d76c7ab5059b1685decddb2380c6e4cebb774b7c17ae83f",
+                              "typeString": "literal_string \"initialize()\""
+                            }
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "member_name": "encodeWithSignature",
+                          "referencedDeclaration": null,
+                          "type": "function (string memory) pure returns (bytes memory)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 13163,
+                              "type": "abi",
+                              "value": "abi"
+                            },
+                            "id": 3806,
+                            "name": "Identifier",
+                            "src": "906:3:11"
+                          }
+                        ],
+                        "id": 3807,
+                        "name": "MemberAccess",
+                        "src": "906:23:11"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "696e697469616c697a652829",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "string",
+                          "type": "literal_string \"initialize()\"",
+                          "value": "initialize()"
+                        },
+                        "id": 3808,
+                        "name": "Literal",
+                        "src": "930:14:11"
+                      }
+                    ],
+                    "id": 3809,
+                    "name": "FunctionCall",
+                    "src": "906:39:11"
+                  }
+                ],
+                "id": 3810,
+                "name": "ModifierInvocation",
+                "src": "853:98:11"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3812,
+                "name": "Block",
+                "src": "959:3:11"
+              }
+            ],
+            "id": 3813,
+            "name": "FunctionDefinition",
+            "src": "816:146:11"
+          }
+        ],
+        "id": 3814,
+        "name": "ContractDefinition",
+        "src": "773:191:11"
+      }
+    ],
+    "id": 3815,
+    "name": "SourceUnit",
+    "src": "630:335:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-02-19T15:49:23.562Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

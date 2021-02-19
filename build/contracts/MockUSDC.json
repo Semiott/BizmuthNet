@@ -1,0 +1,747 @@
+{
+  "contractName": "MockUSDC",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_account",
+          "type": "address"
+        }
+      ],
+      "name": "isBlacklisted",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "blacklisted",
+          "type": "bool"
+        }
+      ],
+      "name": "setIsBlacklisted",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_account\",\"type\":\"address\"}],\"name\":\"isBlacklisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bool\",\"name\":\"blacklisted\",\"type\":\"bool\"}],\"name\":\"setIsBlacklisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/mock/MockUSDC.sol\":\"MockUSDC\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/mock/MockUSDC.sol\":{\"keccak256\":\"0x2d714e273924af1a5300e0aaf61161fb55283be7cc5b46548eced818030a8225\",\"urls\":[\"bzz-raw://b25c2d63114e2761fc223685aa15428ed9fc2c37606186346fc7bb4402102c4a\",\"dweb:/ipfs/QmduWWvneMyFrLYCd6kgfhY8YVNmSWKQ7kTS91ANXN5vqv\"]},\"/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/oracle/IUSDC.sol\":{\"keccak256\":\"0x3c351db9c25ff00c0dc7eca786ce1d504c994530da1cf11db285410cf34ead83\",\"urls\":[\"bzz-raw://a75c699dd0370645bee5173e3aa57946d3ad9d4ff0d53e00eabaa16a3b778d60\",\"dweb:/ipfs/Qmb4htSvY2demty2tXVFjbK5qeejrWccr4Y1cqF1Do6sEu\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610210806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80638387d0bf1461003b578063fe575a8714610057575b600080fd5b6100556004803603610050919081019061010e565b610087565b005b610071600480360361006c91908101906100e5565b6100a3565b60405161007e9190610146565b60405180910390f35b806000806101000a81548160ff02191690831515021790555050565b60008060009054906101000a900460ff169050919050565b6000813590506100ca8161019f565b92915050565b6000813590506100df816101b6565b92915050565b6000602082840312156100f757600080fd5b6000610105848285016100bb565b91505092915050565b60006020828403121561012057600080fd5b600061012e848285016100d0565b91505092915050565b61014081610173565b82525050565b600060208201905061015b6000830184610137565b92915050565b600061016c8261017f565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6101a881610161565b81146101b357600080fd5b50565b6101bf81610173565b81146101ca57600080fd5b5056fea365627a7a72315820e4f1d6b1e63ab0c57614a761510ffed6dd413c2ad7265dfe1d43941ea54c67576c6578706572696d656e74616cf564736f6c63430005110040",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80638387d0bf1461003b578063fe575a8714610057575b600080fd5b6100556004803603610050919081019061010e565b610087565b005b610071600480360361006c91908101906100e5565b6100a3565b60405161007e9190610146565b60405180910390f35b806000806101000a81548160ff02191690831515021790555050565b60008060009054906101000a900460ff169050919050565b6000813590506100ca8161019f565b92915050565b6000813590506100df816101b6565b92915050565b6000602082840312156100f757600080fd5b6000610105848285016100bb565b91505092915050565b60006020828403121561012057600080fd5b600061012e848285016100d0565b91505092915050565b61014081610173565b82525050565b600060208201905061015b6000830184610137565b92915050565b600061016c8261017f565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6101a881610161565b81146101b357600080fd5b50565b6101bf81610173565b81146101ca57600080fd5b5056fea365627a7a72315820e4f1d6b1e63ab0c57614a761510ffed6dd413c2ad7265dfe1d43941ea54c67576c6578706572696d656e74616cf564736f6c63430005110040",
+  "sourceMap": "721:275:37:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;721:275:37;;;;;;;",
+  "deployedSourceMap": "721:275:37:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;721:275:37;;;;;;;;;;;;;;;;;;;;;;;;898:96;;;;;;;;;;;;;;;;:::i;:::-;;786:106;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;898:96;976:11;961:12;;:26;;;;;;;;;;;;;;;;;;898:96;:::o;786:106::-;850:4;873:12;;;;;;;;;;;866:19;;786:106;;;:::o;5:130:-1:-;;85:6;72:20;63:29;;97:33;124:5;97:33;;;57:78;;;;;142:124;;219:6;206:20;197:29;;231:30;255:5;231:30;;;191:75;;;;;273:241;;377:2;365:9;356:7;352:23;348:32;345:2;;;393:1;390;383:12;345:2;428:1;445:53;490:7;481:6;470:9;466:22;445:53;;;435:63;;407:97;339:175;;;;;521:235;;622:2;610:9;601:7;597:23;593:32;590:2;;;638:1;635;628:12;590:2;673:1;690:50;732:7;723:6;712:9;708:22;690:50;;;680:60;;652:94;584:172;;;;;763:104;840:21;855:5;840:21;;;835:3;828:34;822:45;;;874:201;;986:2;975:9;971:18;963:26;;1000:65;1062:1;1051:9;1047:17;1038:6;1000:65;;;957:118;;;;;1082:91;;1144:24;1162:5;1144:24;;;1133:35;;1127:46;;;;1180:85;;1253:5;1246:13;1239:21;1228:32;;1222:43;;;;1272:121;;1345:42;1338:5;1334:54;1323:65;;1317:76;;;;1400:117;1469:24;1487:5;1469:24;;;1462:5;1459:35;1449:2;;1508:1;1505;1498:12;1449:2;1443:74;;1524:111;1590:21;1605:5;1590:21;;;1583:5;1580:32;1570:2;;1626:1;1623;1616:12;1570:2;1564:71;",
+  "source": "/*\n    Copyright 2020 Empty Set Squad <emptysetsquad@protonmail.com>\n\n    Licensed under the Apache License, Version 2.0 (the \"License\");\n    you may not use this file except in compliance with the License.\n    You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n    Unless required by applicable law or agreed to in writing, software\n    distributed under the License is distributed on an \"AS IS\" BASIS,\n    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n    See the License for the specific language governing permissions and\n    limitations under the License.\n*/\n\npragma solidity ^0.5.17;\npragma experimental ABIEncoderV2;\n\nimport \"../oracle/IUSDC.sol\";\n\ncontract MockUSDC is IUSDC {\n    bool private _blacklisted;\n\n    function isBlacklisted(address _account) external view returns (bool) {\n        return _blacklisted;\n    }\n\n    function setIsBlacklisted(bool blacklisted) external {\n        _blacklisted = blacklisted;\n    }\n}\n",
+  "sourcePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/mock/MockUSDC.sol",
+  "ast": {
+    "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/mock/MockUSDC.sol",
+    "exportedSymbols": {
+      "MockUSDC": [
+        8172
+      ]
+    },
+    "id": 8173,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8145,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "630:24:37"
+      },
+      {
+        "id": 8146,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "655:33:37"
+      },
+      {
+        "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/oracle/IUSDC.sol",
+        "file": "../oracle/IUSDC.sol",
+        "id": 8147,
+        "nodeType": "ImportDirective",
+        "scope": 8173,
+        "sourceUnit": 9382,
+        "src": "690:29:37",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 8148,
+              "name": "IUSDC",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 9381,
+              "src": "742:5:37",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IUSDC_$9381",
+                "typeString": "contract IUSDC"
+              }
+            },
+            "id": 8149,
+            "nodeType": "InheritanceSpecifier",
+            "src": "742:5:37"
+          }
+        ],
+        "contractDependencies": [
+          9381
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 8172,
+        "linearizedBaseContracts": [
+          8172,
+          9381
+        ],
+        "name": "MockUSDC",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 8151,
+            "name": "_blacklisted",
+            "nodeType": "VariableDeclaration",
+            "scope": 8172,
+            "src": "754:25:37",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 8150,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "754:4:37",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 8160,
+              "nodeType": "Block",
+              "src": "856:36:37",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 8158,
+                    "name": "_blacklisted",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8151,
+                    "src": "873:12:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 8157,
+                  "id": 8159,
+                  "nodeType": "Return",
+                  "src": "866:19:37"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 8161,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isBlacklisted",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8154,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8153,
+                  "name": "_account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8161,
+                  "src": "809:16:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8152,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "809:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "808:18:37"
+            },
+            "returnParameters": {
+              "id": 8157,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8156,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8161,
+                  "src": "850:4:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 8155,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "850:4:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "849:6:37"
+            },
+            "scope": 8172,
+            "src": "786:106:37",
+            "stateMutability": "view",
+            "superFunction": 9380,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 8170,
+              "nodeType": "Block",
+              "src": "951:43:37",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 8168,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 8166,
+                      "name": "_blacklisted",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8151,
+                      "src": "961:12:37",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 8167,
+                      "name": "blacklisted",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8163,
+                      "src": "976:11:37",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "961:26:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8169,
+                  "nodeType": "ExpressionStatement",
+                  "src": "961:26:37"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 8171,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setIsBlacklisted",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8164,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8163,
+                  "name": "blacklisted",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8171,
+                  "src": "924:16:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 8162,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "924:4:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "923:18:37"
+            },
+            "returnParameters": {
+              "id": 8165,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "951:0:37"
+            },
+            "scope": 8172,
+            "src": "898:96:37",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8173,
+        "src": "721:275:37"
+      }
+    ],
+    "src": "630:367:37"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/mock/MockUSDC.sol",
+      "exportedSymbols": {
+        "MockUSDC": [
+          8172
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".17"
+          ]
+        },
+        "id": 8145,
+        "name": "PragmaDirective",
+        "src": "630:24:37"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 8146,
+        "name": "PragmaDirective",
+        "src": "655:33:37"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 9382,
+          "absolutePath": "/Users/gokulalex/Apps/eth_apps/SemiotNet/contracts/oracle/IUSDC.sol",
+          "file": "../oracle/IUSDC.sol",
+          "scope": 8173,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 8147,
+        "name": "ImportDirective",
+        "src": "690:29:37"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            9381
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            8172,
+            9381
+          ],
+          "name": "MockUSDC",
+          "scope": 8173
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IUSDC",
+                  "referencedDeclaration": 9381,
+                  "type": "contract IUSDC"
+                },
+                "id": 8148,
+                "name": "UserDefinedTypeName",
+                "src": "742:5:37"
+              }
+            ],
+            "id": 8149,
+            "name": "InheritanceSpecifier",
+            "src": "742:5:37"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "_blacklisted",
+              "scope": 8172,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bool",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bool",
+                  "type": "bool"
+                },
+                "id": 8150,
+                "name": "ElementaryTypeName",
+                "src": "754:4:37"
+              }
+            ],
+            "id": 8151,
+            "name": "VariableDeclaration",
+            "src": "754:25:37"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isBlacklisted",
+              "scope": 8172,
+              "stateMutability": "view",
+              "superFunction": 9380,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_account",
+                      "scope": 8161,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 8152,
+                        "name": "ElementaryTypeName",
+                        "src": "809:7:37"
+                      }
+                    ],
+                    "id": 8153,
+                    "name": "VariableDeclaration",
+                    "src": "809:16:37"
+                  }
+                ],
+                "id": 8154,
+                "name": "ParameterList",
+                "src": "808:18:37"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 8161,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 8155,
+                        "name": "ElementaryTypeName",
+                        "src": "850:4:37"
+                      }
+                    ],
+                    "id": 8156,
+                    "name": "VariableDeclaration",
+                    "src": "850:4:37"
+                  }
+                ],
+                "id": 8157,
+                "name": "ParameterList",
+                "src": "849:6:37"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 8157
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 8151,
+                          "type": "bool",
+                          "value": "_blacklisted"
+                        },
+                        "id": 8158,
+                        "name": "Identifier",
+                        "src": "873:12:37"
+                      }
+                    ],
+                    "id": 8159,
+                    "name": "Return",
+                    "src": "866:19:37"
+                  }
+                ],
+                "id": 8160,
+                "name": "Block",
+                "src": "856:36:37"
+              }
+            ],
+            "id": 8161,
+            "name": "FunctionDefinition",
+            "src": "786:106:37"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setIsBlacklisted",
+              "scope": 8172,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "blacklisted",
+                      "scope": 8171,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 8162,
+                        "name": "ElementaryTypeName",
+                        "src": "924:4:37"
+                      }
+                    ],
+                    "id": 8163,
+                    "name": "VariableDeclaration",
+                    "src": "924:16:37"
+                  }
+                ],
+                "id": 8164,
+                "name": "ParameterList",
+                "src": "923:18:37"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8165,
+                "name": "ParameterList",
+                "src": "951:0:37"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 8151,
+                              "type": "bool",
+                              "value": "_blacklisted"
+                            },
+                            "id": 8166,
+                            "name": "Identifier",
+                            "src": "961:12:37"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 8163,
+                              "type": "bool",
+                              "value": "blacklisted"
+                            },
+                            "id": 8167,
+                            "name": "Identifier",
+                            "src": "976:11:37"
+                          }
+                        ],
+                        "id": 8168,
+                        "name": "Assignment",
+                        "src": "961:26:37"
+                      }
+                    ],
+                    "id": 8169,
+                    "name": "ExpressionStatement",
+                    "src": "961:26:37"
+                  }
+                ],
+                "id": 8170,
+                "name": "Block",
+                "src": "951:43:37"
+              }
+            ],
+            "id": 8171,
+            "name": "FunctionDefinition",
+            "src": "898:96:37"
+          }
+        ],
+        "id": 8172,
+        "name": "ContractDefinition",
+        "src": "721:275:37"
+      }
+    ],
+    "id": 8173,
+    "name": "SourceUnit",
+    "src": "630:367:37"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-02-19T15:49:23.715Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
