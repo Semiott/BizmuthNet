@@ -59,7 +59,7 @@ contract Getters is State {
      * Global
      */
 
-    function dollar() public view returns (IDollar) {
+    function base() public view returns (IBase) {
         return _state.provider.dollar;
     }
 
