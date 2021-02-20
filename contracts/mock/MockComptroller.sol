@@ -18,7 +18,7 @@ pragma solidity ^0.5.17;
 pragma experimental ABIEncoderV2;
 
 import "../dao/Comptroller.sol";
-import "../token/Dollar.sol";
+import "../base/Base.sol";
 import "./MockState.sol";
 
 contract MockComptroller is Comptroller, MockState {
