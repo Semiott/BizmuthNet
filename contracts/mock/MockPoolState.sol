@@ -32,8 +32,8 @@ contract MockPoolState is PoolSetters {
         return IDAO(_dao);
     }
 
-    function dollar() public view returns (IDollar) {
-        return IDollar(_dollar);
+    function dollar() public view returns (IBase) {
+        return IBase(_dollar);
     }
 
     /**
