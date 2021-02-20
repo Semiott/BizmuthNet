@@ -23,7 +23,7 @@ import "./MockState.sol";
 
 contract MockComptroller is Comptroller, MockState {
     constructor(address pool) public {
-        _state.provider.dollar = new Dollar();
+        _state.provider.dollar = new Base();
         _state.provider.pool = pool;
     }
 
@@ -61,6 +61,6 @@ contract MockComptroller is Comptroller, MockState {
 
     /* For testing only */
     function mintToE(address account, uint256 amount) external {
-        dollar().mint(account, amount);
+        base().mint(account, amount);
     }
 }
