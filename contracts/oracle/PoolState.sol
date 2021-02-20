@@ -18,7 +18,7 @@ pragma solidity ^0.5.17;
 pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "../token/IDollar.sol";
+import "../base/IBase.sol";
 import "./IDAO.sol";
 import "./IUSDC.sol";
 
