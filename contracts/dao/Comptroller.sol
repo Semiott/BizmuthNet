@@ -27,7 +27,7 @@ contract Comptroller is Setters {
     bytes32 private constant FILE = "Comptroller";
 
     function mintToAccount(address account, uint256 amount) internal {
-        dollar().mint(account, amount);
+        base().mint(account, amount);
         if (!bootstrappingAt(epoch())) {
             increaseDebt(amount);
         }
@@ -36,15 +36,15 @@ contract Comptroller is Setters {
     }
 
     function burnFromAccount(address account, uint256 amount) internal {
-        dollar().transferFrom(account, address(this), amount);
-        dollar().burn(amount);
+        base().transferFrom(account, address(this), amount);
+        base().burn(amount);
         decrementTotalDebt(amount, "Comptroller: not enough outstanding debt");
 
         balanceCheck();
     }
 
     function redeemToAccount(address account, uint256 amount, uint256 couponAmount) internal {
-        dollar().mint(account, amount);
+        base().mint(account, amount);
         if (couponAmount != 0) {
             dollar().transfer(account, couponAmount);
             decrementTotalRedeemable(couponAmount, "Comptroller: not enough redeemable balance");
@@ -54,7 +54,7 @@ contract Comptroller is Setters {
     }
 
     function burnRedeemable(uint256 amount) internal {
-        dollar().burn(amount);
+        base().burn(amount);
         decrementTotalRedeemable(amount, "Comptroller: not enough redeemable balance");
 
         balanceCheck();
@@ -115,7 +115,7 @@ contract Comptroller is Setters {
     }
 
     function resetDebt(Decimal.D256 memory targetDebtRatio) internal returns (uint256) {
-        uint256 targetDebt = targetDebtRatio.mul(dollar().totalSupply()).asUint256();
+        uint256 targetDebt = targetDebtRatio.mul(base().totalSupply()).asUint256();
         uint256 currentDebt = totalDebt();
 
         if (currentDebt > targetDebt) {
@@ -130,7 +130,7 @@ contract Comptroller is Setters {
 
     function balanceCheck() private {
         Require.that(
-            dollar().balanceOf(address(this)) >= totalBonded().add(totalStaged()).add(totalRedeemable()),
+            base().balanceOf(address(this)) >= totalBonded().add(totalStaged()).add(totalRedeemable()),
             FILE,
             "Inconsistent balances"
         );
@@ -139,25 +139,25 @@ contract Comptroller is Setters {
     function mintToDAO(uint256 amount) private returns (bool canMint) {
         canMint = totalBonded() != 0;
         if (amount > 0 && canMint) {
-            dollar().mint(address(this), amount);
+            base().mint(address(this), amount);
             incrementTotalBonded(amount);
         }
     }
 
     function mintToPool(uint256 amount) private {
         if (amount > 0) {
-            dollar().mint(pool(), amount);
+            base().mint(pool(), amount);
         }
     }
 
     function mintToTreasury(uint256 amount) private {
         if (amount > 0) {
-            dollar().mint(Constants.getTreasuryAddress(), amount);
+            base().mint(Constants.getTreasuryAddress(), amount);
         }
     }
 
     function mintToRedeemable(uint256 amount) private {
-        dollar().mint(address(this), amount);
+        base().mint(address(this), amount);
         incrementTotalRedeemable(amount);
 
         balanceCheck();
