@@ -21,10 +21,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
 import "@openzeppelin/contracts/access/roles/MinterRole.sol";
 import "./Permittable.sol";
-import "./IDollar.sol";
+import "./IBase.sol";
 
 
-contract Dollar is IDollar, MinterRole, ERC20Detailed, Permittable, ERC20Burnable  {
+contract Base is IBase, MinterRole, ERC20Detailed, Permittable, ERC20Burnable  {
 
     constructor()
     ERC20Detailed("Empty Set Dollar", "ESD", 18)
