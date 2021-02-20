@@ -43,8 +43,8 @@ contract MockPool is Pool {
         return IDAO(_dao);
     }
 
-    function dollar() public view returns (IDollar) {
-        return IDollar(_dollar);
+    function dollar() public view returns (IBase) {
+        return IBase(_dollar);
     }
 
     function univ2() public view returns (IERC20) {
