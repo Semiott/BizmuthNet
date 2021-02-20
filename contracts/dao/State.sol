@@ -18,7 +18,7 @@ pragma solidity ^0.5.17;
 pragma experimental ABIEncoderV2;
 
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
-import "../token/IBase.sol";
+import "../base/IBase.sol";
 import "../oracle/IOracle.sol";
 import "../external/Decimal.sol";
 
