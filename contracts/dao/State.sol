@@ -89,7 +89,7 @@ contract Era {
 
 contract Storage {
     struct Provider {
-        IDollar dollar;
+        IBase base;
         IOracle oracle;
         address pool;
     }
