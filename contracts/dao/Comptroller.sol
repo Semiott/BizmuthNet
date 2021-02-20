@@ -46,7 +46,7 @@ contract Comptroller is Setters {
     function redeemToAccount(address account, uint256 amount, uint256 couponAmount) internal {
         base().mint(account, amount);
         if (couponAmount != 0) {
-            dollar().transfer(account, couponAmount);
+            base().transfer(account, couponAmount);
             decrementTotalRedeemable(couponAmount, "Comptroller: not enough redeemable balance");
         }
 
