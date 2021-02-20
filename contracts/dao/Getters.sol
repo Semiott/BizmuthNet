@@ -96,7 +96,7 @@ contract Getters is State {
     }
 
     function totalNet() public view returns (uint256) {
-        return dollar().totalSupply().sub(totalDebt());
+        return base().totalSupply().sub(totalDebt());
     }
 
     function eraStatus() public view returns (Era.Status) {
