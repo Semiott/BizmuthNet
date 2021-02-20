@@ -37,7 +37,7 @@ contract PoolGetters is PoolState {
     }
 
     function dollar() public view returns (IBase) {
-        return IDollar(Constants.getDollarAddress());
+        return IBase(Constants.getDollarAddress());
     }
 
     function univ2() public view returns (IERC20) {
