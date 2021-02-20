@@ -36,7 +36,7 @@ contract PoolGetters is PoolState {
         return IDAO(Constants.getDaoAddress());
     }
 
-    function dollar() public view returns (IDollar) {
+    function dollar() public view returns (IBase) {
         return IDollar(Constants.getDollarAddress());
     }
 
